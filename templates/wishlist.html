@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+    <style>
+body {
+    background-color: #000;
+    color: #fff;
+
+}
+
+.library-container {
+    max-width: 900px;
+    margin-left: 80px;
+    padding: 35px;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-bar, #tag-filter {
+    width: 200px;
+    padding: 7px;
+    border: 2px solid #666;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#search-button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+/* Основной стиль для select */
+select {
+    background-color: #111;
+    color: white;
+    border: 1px solid #666;
+    padding: 10px;
+    text-align: center;
+    width: 185px;
+}
+
+/* Изменение цвета при наведении */
+select option:hover {
+    background-color: #28a745 !important; /* Зелёный */
+    color: white;
+}
+
+/* Выделенный элемент */
+select option:checked {
+    background-color: #28a745; /* Зелёный */
+    color: white;
+}
+
+
+/* Фильтры */
+.filters {
+    display: flex;
+        justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-family: "DMMono-Light";
+    font-size: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.section-title {
+    margin-left: 80px;
+    text-align: left;
+    color: #ccc;
+}
+
+
+
+.category-button {
+    background: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.search-bth button{
+    background: #28a745;
+    color: white;
+        width: 185px;
+    padding: 10px;
+}
+@media (max-width: 480px) {
+.section-title{
+    margin-left: 0px;
+}}
+
+
+    </style>
+<div class="library-container">
+    <!-- Поисковая строка -->
+    <div class="search-section">
+
+    </div>
+
+</div>
+
+
+
+    <!-- Игровая библиотека -->
+    <h1 class="section-title">Wishlist</h1>
+    <div class="container" id="games-container">
+        {% if wishlist_games %}
+            {% for favorite in wishlist_games %}
+                {% with game=favorite.game %}
+                    <div class="game-block" data-game="{{ game.id }}">
+                        {% if game.image %}
+                            <a href="{% url 'detail' game.pk %}"> 
+                                <img src="{{ game.image.url }}" class="game-cover">
+                            </a>
+                        {% else %}
+                            <div class="no-image">
+                                <a href="{% url 'detail' game.pk %}">No cover</a>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="title-game">
+                            <div class="name">
+                                <h3 class="game-title">{{ game.name }}</h3>
+                                <p class="game-description">{{ game.description }}</p>
+                            </div>
+                            <div class="info-button">Category</div>
+                        </div>
+
+                        <div class="modal">
+                            <div class="kategorii">
+                                <div class="kategorii-title">Category:</div>
+                                <div class="kategorii-list">
+                                
+                            {% for category in game.category.all %}
+                                <a href="{% url 'game_catalog_by_category' category.id %}" class="kategorii-item">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
+                       
+                                </div>
+                            </div>
+                            <div class="description">
+                                <h3>Description</h3>
+                                <p>{{ game.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        {% else %}
+            <p>Ваш вишлист пуст.</p>
+        {% endif %}
+    </div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="pagination-link">« </a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">‹ </a>
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link"> ›</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link"> »</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+
+
+{% endblock %}

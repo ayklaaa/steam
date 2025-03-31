@@ -1,0 +1,155 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+    body {
+    background-color: #222222 ;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.registration-container {
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.registration-card {
+
+    padding: 40px;
+
+
+    width: 350px;
+}
+
+
+
+h1 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.subtext {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.subtext a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #888;
+
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.register-button {
+    width: 205px;
+    height: 60px;
+    padding: 12px;
+    background: #8DFD1B;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    margin-top: 10px;
+}
+
+.register-button:hover {
+    background: #00cc00;
+}
+.form-group{
+    display: flex;
+}
+@media (max-width: 480px) {
+    .registration-card {
+        padding: 20px;
+    }
+
+    .back-button {
+        font-size: 14px;
+        top: 10px;
+        left: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .register-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    </style>
+</head>
+<body>
+<div class="registration-container">
+    <a href="{% url 'index' %}" class="back-button">← Back</a>
+    <div class="registration-card">
+    <div class="logo">
+                <img src="{% static 'img/logo.svg' %}" alt="Logo">
+            </div>
+
+        <h1>Welcome back </h1>
+
+    <p class="subtext">
+            Don't have an account? <a href="{% url 'auth:reg' %}">Register</a>
+        </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+
+
+            <input name="username" placeholder="login" type="text" class="form-control" required>
+            </div>
+
+        <div class="form-group">
+
+
+            <input name="password" placeholder="password" type="password" class="form-control" required>
+            </div>
+
+        <button type="submit" class="register-button">Sign in</button>
+
+
+    </form></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1243 @@
+{% extends 'base.html' %}
+{% block main %}
+    {% load static %}
+
+
+
+    {#<!DOCTYPE html>#}
+    {#<html lang="en">#}
+    {#<head>#}
+    {#    <meta charset="UTF-8">#}
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+    {#    <title>Meta</title>#}
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>#}
+    {##}
+    {#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>#}
+    {#    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">#}
+    {#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">#}
+    {#    <link rel="preconnect" href="https://fonts.googleapis.com">#}
+    {#    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>#}
+    {#    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">#}
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>#}
+    {##}
+    {#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>#}
+    {#</head>#}
+    {##}
+    {#<div class="header">#}
+    {##}
+    {#    <div class="navigation">#}
+    {##}
+    {#        <div class="elements"><a href="{% url 'index' %}">#}
+    {#            Home</a>#}
+    {#        </div>#}
+    {#        <div class="elements"><a href="{% url 'wishlist' %}">#}
+    {#            Wishlist</a>#}
+    {#        </div>#}
+    {#        <div class="elements"><a href="{% url 'autors' %}">#}
+    {#            Authors</a>#}
+    {#        </div>#}
+    {#        <div class="elements"><a href="{% url 'catalog' %}">#}
+    {#            Catalog</a>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {#    <div class="social-media">#}
+    {#       <div class="search">#}
+    {#    <form action="{% url 'search' %}" method="GET">#}
+    {#        <input type="text" name="search" placeholder="Search..." value="{{ search }}">#}
+    {#        <button type="submit" class="icon-search">#}
+    {#            <img src="{% static 'img/seach.svg' %}" alt="">#}
+    {#        </button>#}
+    {#    </form>#}
+    {#</div>#}
+    {#        <div class="media-el">#}
+    {#            <img src="{% static 'img/twitter.svg' %}" alt="twitter">#}
+    {#        </div>#}
+    {#        <div class="media-el">#}
+    {#            <img src="{% static 'img/discord.svg' %}" alt="discord">#}
+    {#        </div>#}
+    {#        <div class="media-el">#}
+    {#            <img src="{% static 'img/youtude.svg' %}" alt="youtube">#}
+    {#        </div>#}
+    {#        <div class="media-el">#}
+    {#            <img src="{% static 'img/tg.svg' %}" alt="tg">#}
+    {#        </div>#}
+    {#        <div class="profile-el">#}
+    {#            <a href="{% url 'profile' %}"><img src="{% static 'img/profile.svg' %}" alt="profile"></a>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {#</div>#}
+    {##}
+    {#<script>#}
+    {#    // Получаем элементы#}
+    {#    const menuToggle = document.getElementById('menuToggle');#}
+    {#    const mobileMenu = document.getElementById('mobileMenu');#}
+    {##}
+    {#    // Переключение видимости мобильного меню при клике на иконку меню#}
+    {#    menuToggle.addEventListener('click', function () {#}
+    {#        mobileMenu.classList.toggle('active');#}
+    {#    });#}
+    {##}
+    {#</script>#}
+
+    <style>
+        .info {
+            flex-direction: column;
+            display: flex;
+            max-width: 1050px;
+
+            background-color: #222222;
+            padding: 20px;
+        }
+
+        .info p {
+
+        }
+
+        {#html,#}
+        {#body {#}
+        {##}
+        {#    height: 100%;#}
+        {
+        #}#}
+
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+        }
+
+
+        body {
+            background: #000;
+            color: #000;
+        {#position: relative;#} margin-top: 100px;
+            color: #fff;
+            font-family: "Audiowide";
+
+
+        }
+
+        .swiper {
+            width: 100%;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mySwiper2 {
+
+            width: 63%;
+        }
+
+        .mySwiper {
+            width: 63%;
+
+            height: 150px;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .mySwiper .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        .mySwiper .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+
+        .name-games-class {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-top: 120px;
+        }
+
+        @media (max-width: 480px) {
+
+            .name-games-class {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 15px;
+
+                .buttons {
+                    width: auto;
+                    width: max-content;
+                    font-size: 15px;
+
+                }
+
+                .buttons button {
+                    padding: 0;
+                }
+            }
+            #wishlist-btn text{
+                display: none;
+            }
+
+            #text {
+                display: none;
+            }
+
+        }
+        /* .game-title p{
+            font-size: 32px;
+        } */
+        .game-description {
+            font-family: Arial, sans-serif;
+            color: white;
+            line-height: 1.6;
+            position: relative;
+
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .feature-title {
+            color: #7FFF00; /* Яркий зелёный */
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .feature-description {
+            margin-left: 20px;
+        }
+
+        h1 {
+            font-family: "Audiowide";
+        }
+
+        .name-games-class h1 {
+
+            font-size: 32px;
+            font-weight: 100;
+        }
+
+        .game-description h1 {
+            font-size: 24px;
+            font-weight: 100;
+            color: #76808C;
+            margin-bottom: 30px;
+
+
+        }
+
+        .game-description {
+            margin-top: 75px;
+        {#font-family: "DMMono-Light";#} font-size: 16px;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 75px;
+        }
+
+        .rating h1 {
+            margin-bottom: 30px;
+        }
+
+        .coments {
+            display: flex;
+            flex-direction: column;
+            margin-top: 75px;
+            margin-bottom: 50px;
+        }
+
+        .coments textarea {
+            text-decoration: none;
+            padding: 20px 15px;
+
+            background: none;
+            margin-bottom: 25px;
+            width: 94%;
+            font-size: 20px;
+
+
+        }
+
+        textarea {
+
+            border: 2px solid #8DFD1B; /* Зелёные границы */
+
+            padding: 10px; /* Отступ внутри поля */
+
+            font-size: 16px; /* Увеличенный размер шрифта */
+            outline: none; /* Убирает стандартное выделение */
+            color: white;
+        }
+
+        textarea::placeholder {
+
+            color: gray; /* Серый цвет для placeholder */
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .modal1 {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 400px;
+            width: 300px;
+
+            padding: 10px;
+            z-index: 10;
+        }
+
+
+        .coments button {
+            width: 245px;
+            height: 45px;
+            background-color: #8DFD1B;
+            color: black;
+            margin: 0 auto;
+            text-decoration: none;
+            display: flow;
+
+        }
+
+        .coments input[type="text"] {
+            outline: 1px solid #8DFD1B;
+        }
+
+        .buttons button {
+            background-color: #1E2329;
+            color: white;
+            padding: 15px;
+            border: none;
+            height: 50px;
+
+
+        }
+
+        .buttons button:hover {
+            background-color: #32383f;
+
+        }
+
+        .modaldetail {
+            background: #2c2f33;
+            padding: 20px;
+            color: #fff;
+
+            max-width: 400px;
+            margin: 20px auto;
+
+        }
+
+        .au, .release-date, .statistics {
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: #4ad34a;
+
+        }
+
+        p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #ddd;
+        }
+
+        .statist p {
+            background: #3b3f45;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .statist span {
+            color: #00ff00;
+        }
+
+        .footer-content {
+            position: relative;
+            height: auto;
+            background-color: #353535;
+            width: 100%;
+            margin-top: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-content .left,
+        .footer-content .middle,
+        .footer-content .right {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .middle ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .middle li {
+            font-size: 14px;
+        }
+
+        .middle li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-around;
+                text-align: left;
+                padding: 40px;
+            }
+
+            .footer-content .left,
+            .footer-content .middle,
+            .footer-content .right {
+                width: auto;
+            }
+
+            .middle {
+                display: flex;
+                flex-direction: row;
+                gap: 40px;
+            }
+        }
+
+        .star-rating {
+            direction: rtl; /* Разворачиваем звезды справа налево */
+            display: inline-flex;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 25px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #3cb63c;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons select {
+            background-color: #1E2329;
+            color: white;
+            padding: 15px;
+            border: none;
+            height: 50px;
+            width: 116px;
+            text-decoration: none;
+        }
+
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 75px;
+        }
+
+
+        .comment p {
+            font-size: 21px;
+            color: #ffffff;
+            line-height: 1.4;
+            margin: 10px 0;
+            font-family: monospace;
+            padding: 0px 8px;
+        }
+
+        .comment-reactions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: flex-end;
+        }
+
+        .like-btn, .dislike-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+            color: white;
+        }
+
+
+        .reply-button {
+            margin-top: 10px;
+            cursor: pointer;
+            background: #8DFD1B;
+            cursor: pointer;
+            width: 90px;
+            padding: 2px;
+            color: #000000;
+        }
+
+        .reply-form {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #000000;
+        }
+
+
+        /* Стили для отдельных комментариев */
+        .comment {
+            margin-bottom: 15px;
+            padding: 10px;
+
+            background: #121212;
+            color: white;
+            flex-direction: column;
+
+            max-width: 1050px;
+        }
+
+        .comment strong {
+            color: #ffffff;
+        }
+
+        .comment h4 {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+
+        /* Стили для кнопок лайков и дизлайков */
+        .comment-reactions {
+            margin: 10px 0;
+        }
+
+        .like-btn, .dislike-btn, .reply-button {
+            background-color: none;
+            color: #000000;
+            border: none;
+
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .like-btn, .dislike-btn {
+            color: #ffffff;
+
+        }
+
+        .video img {
+            width: 100%;
+        }
+
+        .video {
+            display: flex;
+        }
+
+        .reply-form textarea {
+            width: 97%;
+            padding: 8px;
+            border: 1px solid #121212;
+            background-color: #121212;
+            resize: vertical; /* Позволяет изменять размер только по вертикали */
+            color: #ffffff;
+
+        }
+
+        .reply-form button {
+            margin-top: 10px;
+            cursor: pointer;
+            background: #8DFD1B;
+            cursor: pointer;
+            width: 90px;
+            padding: 2px;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Стили для ответов */
+        .reply-list {
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 2px solid #4ad34a;
+            background-color: #262626;
+        }
+
+        .reply {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .reply strong {
+            color: #ffffff;
+        }
+
+        small {
+            display: flex;
+            flex-direction: row-reverse;
+            margin-top: -15px;
+
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .dislike-reply-btn {
+            background-color: #262626;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .like-reply-btn {
+            background-color: #262626;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .block-ot {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+
+        .ava {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        }
+        {##}
+        {#.au{#}
+        {#    display: flex;#}
+        {#            align-items: baseline;#}
+        #}#}
+        {##}
+        {##}
+        {#.statist{#}
+        {#    background-color: #3e4247;#}
+        {#    padding: 10px;#}
+
+        #}#}
+        {#.modaldetail{#}
+        {#    display: flex;#}
+        {#    gap: 10px;#}
+        {#    margin-top: 10px;#}
+        {#        flex-direction: column;#}
+        {#    font-size: 15px;#}
+        {#font-family: "Audiowide";   #}
+
+        #}#}
+
+
+    </style>
+
+
+    <body>
+
+
+    <!-- <div class="container"> -->
+    <div class="container1">
+        <div class="name-games-class">
+            <div class="game-title">
+                <h1>{{ game.name }}</h1>
+            </div>
+            <div class="buttons">
+
+                <button id="wishlist-btn" data-game-id="{{ game.id }} ">
+                  Wishlist <img src="/static/img/heard.svg" height="10px">
+                </button>
+                <form method="post" action="{% url 'add_tag_to_game' game.id %}">
+                    {% csrf_token %}
+                    <select name="status" id="tag" onchange="this.form.submit();">
+                        {% for tag in tags %}
+                            <option value="{{ tag.id }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+                </form>
+
+                <button id="infoBtn">Information <img src="/static/img/arrov.svg"></button>
+                <div class="modal1 hidden" id="modal1">
+                    <div class="modaldetail">
+                        <div class="au">
+                            <h4>Author:</h4>
+                            <p>{{ game.creator }}</p>
+                        </div>
+                        <div class="release-date">
+                            <h4>Release Date:</h4>
+                            <p>{{ game.date }}</p>
+                        </div>
+                        <div class="statistics">
+                            <h4>Statistics:</h4>
+                            <div class="statist">
+               <p><span> Playing now:</span> {{ playing_now }} players</p>
+        <p><span> Played:</span> {{ played }} players</p>
+        <p><span> Favorite:</span> {{ favorite }} players</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        {##}
+        {#<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">#}
+        {#    <div class="swiper-wrapper">#}
+        {##}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>#}
+        {#        </div>#}
+        {##}
+        {#    </div>#}
+        {#    <div class="swiper-button-next"></div>#}
+        {#    <div class="swiper-button-prev"></div>#}
+        {#</div>#}
+        {#<div thumbsSlider="" class="swiper mySwiper">#}
+        {#    <div class="swiper-wrapper">#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="/img/game1.png"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="/img/game3.png"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {#            <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>#}
+        {#        </div>#}
+        {#        <div class="swiper-slide">#}
+        {##}
+        {#            <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>#}
+        {#        </div>#}
+        {##}
+        {#    </div>#}
+        {#</div>#}
+        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                {% for image in game.images.all %}
+                    <div class="swiper-slide">
+                        <img src="{{ image.image.url }}" alt="Game Image"/>
+                    </div>
+                {% empty %}
+                    <div class="swiper-slide">
+                        <p>Изображений нет.</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div thumbsSlider="" class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for image in game.images.all %}
+                    <div class="swiper-slide">
+                        <img src="{{ image.image.url }}" alt="Game Thumbnail"/>
+                    </div>
+                {% empty %}
+                    <div class="swiper-slide">
+                        <p>Изображений нет.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="game-description">
+            <h1>About {{ game.name }}</h1>
+            {% if game.video and game.video.url %}
+<div class="video">
+    <img src="{{ game.video.url }}" alt="">
+</div>
+{% endif %}
+            {#    <p>{{ game.description }}</p>  <!-- Основной текст -->#}
+
+            {% for feature in features %}
+                <p class="feature-title">• {{ feature.title }}</p>
+                <p class="feature-description">{{ feature.description }}</p>
+            {% endfor %}
+        </div>
+        <div class="rating">
+            <h1>Rate the game</h1>
+            <div class="info">
+                <p>Overall game rating - {{ average_rating|floatformat:1 }} / 5 ({{ rating_count }} votes)</p>
+
+                {% if user.is_authenticated %}
+                    <p>Give your rating:</p>
+                    <div class="user-rating">
+                        <form id="rating-form" method="post" action="{% url 'rate_game' game.id %}">
+                            {% csrf_token %}
+                            <div class="star-rating">
+                                {% for i in "54321" %}
+                                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}"
+                                           {% if user_rating == i|add:"0" %}checked{% endif %}
+                                           onchange="this.form.submit()">
+                                    <label for="star{{ i }}">★</label>
+                                {% endfor %}
+                            </div>
+                        </form>
+                    </div>
+                {% else %}
+                    <p><a href="{% url 'auth:login' %}">Войдите</a>, чтобы оценить игру</p>
+                {% endif %}
+            </div>
+
+
+            <div class="coments">
+                <h1>Comments</h1>
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'add_comment' game.id %}">
+                        {% csrf_token %}
+                        <textarea name="text" placeholder="Write a comment..." required></textarea>
+
+                        <button type="submit">Send</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'auth:login' %}">Войдите</a>, чтобы оставить комментарий</p>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="comment-list">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="ava">
+                        <!-- Вывод аватарки пользователя с ссылкой на профиль -->
+                        <a href="{% url 'profile-detail' comment.user.muserprofile.pk %}">
+                            {% if comment.user.muserprofile.profile_picture %}
+                                <img src="{{ comment.user.muserprofile.profile_picture.url }}"
+                                     alt="{{ comment.user.username }}" class="comment-avatar">
+                            {% else %}
+                                <img src="/static/default_profile.jpg" alt="Default Profile" class="comment-avatar">
+                            {% endif %}
+                        </a>
+                        <strong>
+                            <a href="{% url 'profile-detail' comment.user.muserprofile.pk %}">
+                                {{ comment.user.username }}
+                            </a>
+                        </strong>
+                    </div>
+                    <small>{{ comment.date_posted|date:"j M Y" }}</small>
+                    <h4>{{ comment.title }}</h4>
+                    <p>{{ comment.text }}</p>
+
+                    <div class="block-ot">
+                        <div class="comment-reactions">
+                            <button class="like-btn" data-id="{{ comment.id }}">
+                                <img src="{% static 'img/like.svg' %}" alt="like">
+                                <span class="like-count">{{ comment.like_count }}</span>
+                            </button>
+                            <button class="dislike-btn" data-id="{{ comment.id }}">
+                                <img src="{% static 'img/dislike.svg' %}" alt="dislike">
+                                <span class="dislike-count">{{ comment.dislike_count }}</span>
+                            </button>
+                        </div>
+                        <!-- Кнопка для ответа -->
+                        <button id="reply-button-{{ comment.id }}" class="reply-button"
+                                onclick="toggleReplyForm({{ comment.id }})">Answer
+                        </button>
+                    </div>
+
+                    <!-- Форма ответа (изначально скрыта) -->
+                    <div class="reply-form" id="reply-form-{{ comment.id }}" style="display: none;">
+                        <form method="post" action="{% url 'add_reply' comment.id %}">
+                            {% csrf_token %}
+                            <textarea name="text" placeholder="Enter your answer..." required></textarea>
+                            <button type="submit">Answer</button>
+                        </form>
+                    </div>
+
+                    <!-- Блок ответов -->
+                    <div class="reply-list">
+                        {% for reply in comment.replies.all %}
+                            <div class="reply">
+                                <div class="ava">
+                                    <!-- Ссылка на профиль пользователя в ответах -->
+                                    <a href="{% url 'profile-detail' reply.user.muserprofile.pk %}">
+                                        {% if reply.user.muserprofile.profile_picture %}
+                                            <img src="{{ reply.user.muserprofile.profile_picture.url }}"
+                                                 alt="{{ reply.user.username }}" class="comment-avatar">
+                                        {% else %}
+                                            <img src="/static/default_profile.png" alt="Default Profile"
+                                                 class="comment-avatar">
+                                        {% endif %}
+                                    </a>
+                                    <strong>
+                                        <a href="{% url 'profile-detail' reply.user.muserprofile.pk %}">
+                                            {{ reply.user.username }}
+                                        </a>
+                                    </strong>
+                                </div>
+                                <small>{{ reply.date_posted|date:"j M Y" }}</small>
+                                <p>{{ reply.text }}</p>
+
+                                <!-- Лайки и дизлайки для ответов -->
+                                <div class="comment-reactions">
+                                    <button class="like-reply-btn" data-id="{{ reply.id }}">
+                                        <img src="{% static 'img/like.svg' %}" alt="like">
+                                        <span class="like-reply-count">{{ reply.like_count }}</span>
+                                    </button>
+                                    <button class="dislike-reply-btn" data-id="{{ reply.id }}">
+                                        <img src="{% static 'img/dislike.svg' %}" alt="dislike">
+                                        <span class="dislike-reply-count">{{ reply.dislike_count }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        {#    <!-- Вывод комментариев -->#}
+        {#    <div class="comment-list">#}
+        {#        {% for comment in comments %}#}
+        {#            <div class="comment">#}
+        {#                <strong>{{ comment.user.username }}</strong> <small>({{ comment.date_posted|date:"d.m.Y H:i" }})</small>#}
+        {#                <h4>{{ comment.title }}</h4>#}
+        {#                <p>{{ comment.text }}</p>#}
+        {##}
+        {#                <!-- Кнопки лайков/дизлайков -->#}
+        {#                <div class="comment-reactions">#}
+        {#                    <button class="like-btn" data-id="{{ comment.id }}">#}
+        {#                        👍 <span class="like-count">{{ comment.like_count }}</span>#}
+        {#                    </button>#}
+        {#                    <button class="dislike-btn" data-id="{{ comment.id }}">#}
+        {#                        👎 <span class="dislike-count">{{ comment.dislike_count }}</span>#}
+        {#                    </button>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        {% empty %}#}
+        {#            <p>Пока нет комментариев. Будьте первым!</p>#}
+        {#        {% endfor %}#}
+        {#    </div>#}
+        {#</div>#}
+    </div>
+    {##}
+    {#<div class="footer-content">#}
+    {#    <div class="left">#}
+    {#        <h2>Meta</h2>#}
+    {#    </div>#}
+    {#    <div class="middle">#}
+    {#        <ul>#}
+    {#            <li><a href="#">Wave NFTs</a></li>#}
+    {#            <li><a href="#">Stories</a></li>#}
+    {#            <li><a href="#">Contact</a></li>#}
+    {#        </ul>#}
+    {#        <ul>#}
+    {#            <li><a href="#">Licencing</a></li>#}
+    {#            <li><a href="#">Style Guide</a></li>#}
+    {#            <li><a href="#">Changelog</a></li>#}
+    {#        </ul>#}
+    {#    </div>#}
+    {#    <div class="right">#}
+    {#        <div class="media-social">#}
+    {#            <div class="media-el">#}
+    {#                <img src="{% static 'img/twitter.svg' %}" alt="twitter">#}
+    {#            </div>#}
+    {#            <div class="media-el">#}
+    {#                <img src="{% static 'img/discord.svg' %}" alt="discord">#}
+    {#            </div>#}
+    {#            <div class="media-el">#}
+    {##}
+    {#                <img src="{% static 'img/youtude.svg' %}" alt="youtube">#}
+    {#            </div>#}
+    {#            <div class="media-el">#}
+    {#                <img src="{% static 'img/tg.svg' %}" alt="tg">#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</div></div>#}
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+
+        document.getElementById('infoBtn').addEventListener('click', function () {
+            let modal = document.getElementById('modal1');
+            modal.classList.toggle('hidden'); // Переключаем класс скрытия
+            let rect = this.getBoundingClientRect();
+            modal.style.top = rect.bottom + 'px';
+            modal.style.left = rect.left + 'px';
+        });
+
+        document.addEventListener('click', function (event) {
+            let modal = document.getElementById('modal1');
+            let button = document.getElementById('infoBtn');
+            if (!button.contains(event.target) && !modal.contains(event.target)) {
+                modal.classList.add('hidden'); // Закрываем модалку
+            }
+        });
+
+
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+            loop: false // ОТКЛЮЧАЕМ ЛУП ДЛЯ МИНИАТЮР
+        });
+
+        var swiper2 = new Swiper(".mySwiper2", {
+            loop: false, // ОТКЛЮЧАЕМ ЛУП ЧТОБЫ НЕ БЫЛО ДУБЛИРОВАНИЯ
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+
+        document.getElementById("wishlist-btn").addEventListener("click", function () {
+            let gameId = this.getAttribute("data-game-id");
+
+            fetch("{% url 'add_to_wishlist' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken"),
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `game_id=${gameId}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "added") {
+                        alert("Игра добавлена в вишлист!");
+                    } else if (data.status === "exists") {
+                        alert("Эта игра уже в вашем вишлисте.");
+                    }
+                })
+                .catch(error => console.error("Ошибка:", error));
+        });
+
+        // Функция для получения CSRF-токена
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                document.cookie.split(";").forEach(cookie => {
+                    let trimmed = cookie.trim();
+                    if (trimmed.startsWith(name + "=")) {
+                        cookieValue = decodeURIComponent(trimmed.substring(name.length + 1));
+                    }
+                });
+            }
+            return cookieValue;
+
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Функция для отправки AJAX-запроса
+            function sendReaction(commentId, action) {
+                fetch(`/comment/${commentId}/${action}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": getCSRFToken(),
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "same-origin",
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector(`.like-btn[data-id='${commentId}'] .like-count`).textContent = data.likes;
+                        document.querySelector(`.dislike-btn[data-id='${commentId}'] .dislike-count`).textContent = data.dislikes;
+                    })
+                    .catch(error => console.error("Ошибка:", error));
+            }
+
+            // Функция для получения CSRF-токена
+            function getCSRFToken() {
+                return document.querySelector("[name=csrfmiddlewaretoken]").value;
+            }
+
+            // Добавляем обработчики событий для кнопок лайков и дизлайков
+            document.querySelectorAll(".like-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    sendReaction(this.dataset.id, "like");
+                });
+            });
+
+            document.querySelectorAll(".dislike-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    sendReaction(this.dataset.id, "dislike");
+                });
+            });
+        });
+
+        function toggleReplyForm(commentId) {
+            const replyForm = document.getElementById(`reply-form-${commentId}`);
+            if (replyForm.style.display === 'none') {
+                replyForm.style.display = 'block';  // Показываем форму
+            } else {
+                replyForm.style.display = 'none';  // Скрываем форму
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function updateReaction(button, url, likeClass, dislikeClass) {
+                let replyId = button.getAttribute("data-id");
+
+                fetch(url, {
+                    method: "POST",
+                    headers: {"X-CSRFToken": getCSRFToken()},
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector(`.like-reply-btn[data-id="${replyId}"] .like-reply-count`).textContent = data.likes;
+                        document.querySelector(`.dislike-reply-btn[data-id="${replyId}"] .dislike-reply-count`).textContent = data.dislikes;
+                    })
+                    .catch(error => console.error("Ошибка:", error));
+            }
+
+            document.querySelectorAll(".like-reply-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    updateReaction(this, `/reply/${this.getAttribute("data-id")}/like/`, ".like-reply-count", ".dislike-reply-count");
+                });
+            });
+
+            document.querySelectorAll(".dislike-reply-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    updateReaction(this, `/reply/${this.getAttribute("data-id")}/dislike/`, ".dislike-reply-count", ".like-reply-count");
+                });
+            });
+
+            function getCSRFToken() {
+                let cookieValue = null;
+                document.cookie.split(";").forEach(cookie => {
+                    cookie = cookie.trim();
+                    if (cookie.startsWith("csrftoken=")) {
+                        cookieValue = decodeURIComponent(cookie.substring("csrftoken=".length));
+                    }
+                });
+                return cookieValue;
+            }
+        });
+
+        function toggleReplyForm(commentId) {
+            var replyForm = document.getElementById('reply-form-' + commentId);
+            var replyButton = document.getElementById('reply-button-' + commentId);
+
+            if (replyForm.style.display === 'none') {
+                replyForm.style.display = 'block';
+                replyButton.style.display = 'none'; // Скрываем кнопку "Ответить"
+            } else {
+                replyForm.style.display = 'none';
+                replyButton.style.display = 'block'; // Показываем кнопку "Ответить"
+            }
+        }
+    </script>
+    </body>
+{% endblock %}

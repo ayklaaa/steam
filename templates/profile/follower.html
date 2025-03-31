@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <style>
+        body {
+
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container-follower {
+            width: 90%;
+            max-width: 800px;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+
+            text-align: center;
+            margin-top: 120px;
+        }
+        .followers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        .follower-card {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .follower-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .follower-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+        .view-profile {
+            color: #0f0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .remove-icon {
+            color: red;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-follower">
+        <h2>Followers</h2>
+<div class="followers-list">
+    {% for friend in friends %}  <!-- Renamed to friend for clarity -->
+    <div class="follower-card">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            {% if friend.profile_picture %}
+                <img src="{{ friend.profile_picture.url }}" alt="{{ friend.name }}">
+            {% else %}
+                <img src="/static/default_profile.png" alt="Default Profile">
+            {% endif %}
+            <div class="follower-info">
+                <h3><a href="{% url 'profile-detail' friend.pk %}">{{ friend.name }}</a></h3>  <!-- Ссылка на профиль -->
+                {% if friend.description %}
+                    <p>{{ friend.description }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+    </div>
+
+    <script>
+function removeFollower(slug) {
+    if (confirm("Are you sure you want to remove this follower?")) {
+        fetch(`/remove_follower/${slug}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();  // Reload the page to see updated followers
+            } else {
+                alert("Error removing follower. Please try again.");
+            }
+        });
+    }
+}
+
+    </script>
+{% endblock %}

@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+    <style>
+body {
+    background-color: #000;
+    color: #fff;
+
+}
+
+.library-container {
+    max-width: 900px;
+    margin-left: 80px;
+    padding: 20px;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-bar, #tag-filter {
+    width: 200px;
+    padding: 7px;
+    border: 2px solid #666;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#search-button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+/* Основной стиль для select */
+select {
+    background-color: #111;
+    color: white;
+    border: 1px solid #666;
+    padding: 10px;
+    text-align: center;
+    width: 185px;
+}
+
+/* Изменение цвета при наведении */
+select option:hover {
+    background-color: #28a745 !important; /* Зелёный */
+    color: white;
+}
+
+/* Выделенный элемент */
+select option:checked {
+    background-color: #28a745; /* Зелёный */
+    color: white;
+}
+
+
+/* Фильтры */
+.filters {
+    display: flex;
+        justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 65px;
+    font-family: "DMMono-Light";
+    font-size: 15px;
+}
+@media (max-width: 480px) {
+    .filters {
+        margin-left: -50px;
+    }
+
+}
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.section-title {
+    margin-left: 80px;
+    text-align: left;
+    color: #ccc;
+}
+
+
+
+.category-button {
+    background: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.search-bth button{
+    background: #28a745;
+    color: white;
+        width: 185px;
+    padding: 10px;
+}
+
+@media (max-width: 480px) {
+.section-title{
+    margin-left: 20px;
+}}
+    </style>
+
+
+
+<div class="library-container">
+    <!-- Поисковая строка -->
+    <div class="search-section">
+
+    </div>
+
+    <!-- Фильтры -->
+    <div class="filters">
+        <div class="filter-group">
+
+            <input type="text" id="tag-filter" placeholder="Enter tag..." value="{% if selected_category %}{{ selected_category.name }}{% endif %}">
+        </div>
+
+        <div class="filter-group">
+
+            <select id="date-filter">
+                <option value="" disabled selected hidden>Sort by Date:</option>
+                <option value="">All</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+
+            <select id="rating-filter">
+                <option value="" disabled selected hidden>Sort by Rating:</option>
+                <option value="">All</option>
+                <option value="high-to-low">High to Low</option>
+                <option value="low-to-high">Low to High</option>
+            </select>
+        </div>
+{#        <div class="search-bth">#}
+{#            <button>Search</button>#}
+{#        </div>#}
+
+
+    </div></div>
+
+    <!-- Игровая библиотека -->
+    <h1 class="section-title">Library</h1>
+    <div class="container" id="games-container">
+    {% for game in games %}
+        <div class="game-block" data-game="{{ game.id }}">
+            {% if game.image %}
+                <a href="{% url 'detail' game.pk %}"> <img src="{{ game.image.url }}" class="game-cover">
+            {% else %}
+                <div class="no-image" ><a href="{% url 'detail' game.pk %}">No cover</a></div>
+            {% endif %}</a>
+            <div class="title-game">
+                <div class="name">
+                    <h3 class="game-title">{{ game.name }}</h3>
+                    <p class="game-description">{{ game.description }}</p>
+                    <p class="game-date" style="display: none;">{{ game.date }}</p>
+<p class="game-rating" style="display: none;">{{ game.average_rating }}</p>
+
+                </div>
+                <div class="info-button">Category</div>
+            </div>
+            <div class="modal">
+                <div class="kategorii">
+                    <div class="kategorii-title">Category:</div>
+                     <div class="kategorii-list">
+                            {% for category in game.category.all %}
+                                <a href="{% url 'game_catalog_by_category' category.id %}" class="kategorii-item">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                </div>
+                <div class="description">
+                    <h3>Description</h3>
+                    <p>{{ game.description }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const gamesContainer = document.getElementById("games-container");
+    const games = Array.from(document.querySelectorAll(".game-block"));
+
+    const dateFilter = document.getElementById("date-filter");
+    const ratingFilter = document.getElementById("rating-filter");
+    const tagFilter = document.getElementById("tag-filter");
+
+    function getGameDate(game) {
+        const dateElement = game.querySelector(".game-date"); // Добавь .game-date в шаблон
+        return dateElement ? new Date(dateElement.textContent.trim()) : new Date(0);
+    }
+
+    function getGameRating(game) {
+        const ratingElement = game.querySelector(".game-rating"); // Добавь .game-rating в шаблон
+        return ratingElement ? parseFloat(ratingElement.textContent.trim()) || 0 : 0;
+    }
+
+    function filterAndSortGames() {
+        let filteredGames = [...games];
+
+        // Фильтр по тегу (категории)
+        const tagValue = tagFilter.value.toLowerCase().trim();
+        if (tagValue) {
+            filteredGames = filteredGames.filter(game => {
+                const categories = game.querySelectorAll(".kategorii-item");
+                return Array.from(categories).some(cat => cat.textContent.toLowerCase().includes(tagValue));
+            });
+        }
+
+        // Сортировка по дате
+        const dateValue = dateFilter.value;
+        if (dateValue) {
+            filteredGames.sort((a, b) => {
+                const dateA = getGameDate(a);
+                const dateB = getGameDate(b);
+                return dateValue === "newest" ? dateB - dateA : dateA - dateB;
+            });
+        }
+
+        // Сортировка по рейтингу
+        const ratingValue = ratingFilter.value;
+        if (ratingValue) {
+            filteredGames.sort((a, b) => {
+                const ratingA = getGameRating(a);
+                const ratingB = getGameRating(b);
+                return ratingValue === "high-to-low" ? ratingB - ratingA : ratingA - ratingB;
+            });
+        }
+
+        // Очистка контейнера и добавление отфильтрованных игр
+        gamesContainer.innerHTML = "";
+        filteredGames.forEach(game => gamesContainer.appendChild(game));
+    }
+
+    // События для фильтров
+    dateFilter.addEventListener("change", filterAndSortGames);
+    ratingFilter.addEventListener("change", filterAndSortGames);
+    tagFilter.addEventListener("input", filterAndSortGames);
+});
+
+
+</script>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="pagination-link">« </a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">‹ </a>
+            <span class="current">
+                page {{ page_obj.number }} for {{ page_obj.paginator.num_pages }}.
+            </span>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link"> ›</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link"> »</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

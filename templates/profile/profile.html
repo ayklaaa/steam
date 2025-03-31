@@ -1,0 +1,467 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <style>
+    .hidden {
+    display: none;
+}
+
+.category {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background: #333;
+    color: white;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.category.active {
+    background: white;
+    color: black;
+}
+.name-user{
+    font-family: "Audiowide";
+    font-size: 30px;
+}
+.following button{
+    padding: 10px 22px;
+    background-color: #32ff00;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+
+}
+.following a{
+    color: black;
+}
+.buttons1{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+
+
+.profile-user-container {
+    color: white;
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: space-evenly;
+    font-family: DMMono-Light;
+    padding-top: 120px;
+    flex-wrap: wrap; /* Добавляем wrap для мобильных устройств */
+}
+
+@media (max-width: 768px) {
+    .profile-user-container {
+        flex-direction: column; /* Меняем направление на колонку для мобильных */
+        align-items: center; /* Центрируем элементы */
+        padding-top: 80px; /* Уменьшаем отступ сверху */
+    }
+
+    .avatar-user img {
+        width: 150px; /* Уменьшаем размер аватара */
+        height: 150px;
+    }
+
+    .user-info {
+        text-align: center; /* Центрируем текст */
+        gap: 20px; /* Уменьшаем отступы */
+    }
+
+    .name-user {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+
+    .title-user {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+
+    .buttons1 {
+        flex-direction: row; /* Меняем направление кнопок на строку */
+        gap: 10px; /* Уменьшаем отступы */
+    }
+
+    .following button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+
+    .edit-profile, .follow, .unfollow {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+}
+
+.categories-game {
+    margin-top: 90px;
+    background: #171717;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 20px; /* Добавляем отступы */
+}
+
+@media (max-width: 768px) {
+    .categories-game {
+        margin-top: 50px; /* Уменьшаем отступ сверху */
+        padding: 10px; /* Уменьшаем отступы */
+    }
+.block-game-categories{
+    display: flex;
+}
+    .all-categories {
+        flex-direction: row; /* Меняем направление на колонку */
+        align-items: center; /* Центрируем кнопки */
+        margin: 20px 0; /* Уменьшаем отступы */
+    }
+
+    .category {
+        width: 100%; /* Растягиваем кнопки на всю ширину */
+        text-align: center; /* Центрируем текст */
+        padding: 10px; /* Уменьшаем отступы */
+                font-size: small;
+    }
+
+
+
+    .name-sorting {
+        flex-direction: column; /* Меняем направление на колонку */
+        gap: 10px; /* Уменьшаем отступы */
+                display: flex
+;
+        align-items: flex-start;
+    }
+
+    .game-title-sorting {
+        margin-right: 0; /* Убираем отступ */
+
+    }
+
+    .info-button-sorting {
+        margin-top: 20px; /* Уменьшаем отступ */
+    }
+}
+
+
+.my-games-section {
+    margin-top: 20px; /* Уменьшаем отступ сверху */
+}
+
+@media (max-width: 768px) {
+    .my-games-section {
+        margin-top: 10px; /* Уменьшаем отступ сверху */
+    }
+
+    .add-game-container {
+        text-align: center; /* Центрируем кнопку */
+    }
+
+    .add-game-button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+
+    .block-game-categories {
+        flex-direction: column; /* Меняем направление на колонку */
+        align-items: center; /* Центрируем элементы */
+    }
+
+    .game-sorting {
+        padding: 10px; /* Уменьшаем отступы */
+
+        align-items: center; /* Центрируем элементы */
+        gap: 20px; /* Уменьшаем отступы */
+    }
+
+    .game-image-sorting {
+        width: 200px; /* Уменьшаем размер изображения */
+        height: auto;
+    }
+
+    .no-image {
+        width: 200px; /* Уменьшаем размер блока без изображения */
+        height: 120px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .name-user {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+
+    .title-user {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+
+    .buttons1 {
+        flex-direction: row; /* Меняем направление кнопок на строку */
+        gap: 10px; /* Уменьшаем отступы */
+    }
+
+    .following button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+
+    .edit-profile, .follow, .unfollow {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 768px) {
+    .game-image-sorting {
+        width: 200px; /* Уменьшаем размер изображения */
+        height: 150px;
+    }
+
+    .no-image {
+        width: 200px; /* Уменьшаем размер блока без изображения */
+        height: 120px;
+    }
+}
+@media (max-width: 768px) {
+    .following button {
+        padding: 8px 16px; /* Уменьшаем размер кнопки */
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {    .game-image-sorting {
+        width: 150px;
+        height: 150px;
+    }
+    .profile-user-container {
+        align-items: center;
+        padding-top: 80px;
+        flex-direction: row;
+    }
+        .user-info {
+            display: flex;
+            margin: 0 auto;
+                    margin-left: -78px;
+        }
+    .game-title-sorting {
+                margin-left: -30px;
+                font-size: 15px;
+    }
+    .time{
+        font-size: 11px;
+    }
+.info-button-sorting {
+    font-size: 11px;
+}
+
+}
+.unfollow {
+        padding: 10px 12px;
+    background-color: #545454;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.follow{
+            padding: 10px 22px;
+    background-color: #545454;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+    </style>
+<div class="profile-user-container">
+    <div class="avatar-user">
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="Avatar" width="237" height="237">
+        {% else %}
+            <img src="/img/ava.png" alt="Default Avatar" width="237" height="237">
+        {% endif %}
+    </div>
+    <div class="user-info">
+        <div class="name-user">{{ profile.name }}</div>
+        <div class="title-user">{{ profile.description }}</div>
+        </div>
+<div class="buttons1">
+
+    <div class="following">
+        <button class="following">
+            <a href="{% url 'follower' profile.pk %}">Followers</a>
+        </button>
+    </div>
+
+    {% if profile.user == request.user %}
+
+        <button class="edit-profile"><a href="{% url 'update' profile.pk %}">Edit profile</a></button>
+    {% else %}
+
+        {% if profile in request.user.muserprofile.friends.all %}
+            <form method="post" action="{% url 'toggle-friend' profile.pk %}">
+                {% csrf_token %}
+                <button class="unfollow">Unsubscribe</button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'toggle-friend' profile.pk %}">
+                {% csrf_token %}
+                <button class="follow">Subscribe</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+<div class="add-game-container">
+    {% if profile.user == request.user %}
+                <a href="{% url 'add_game' %}" class="add-game-button">+ Add a game</a>
+    {% endif %}
+            </div>
+</div>
+</div>
+
+
+<div class="categories-game">
+    <div class="all-categories">
+        <button class="category active" data-category="all">All Games</button>
+        <button class="category" data-category="playing-now">Playing now</button>
+        <button class="category" data-category="played">Played</button>
+        <button class="category" data-category="favorite">Favorite</button>
+        <button class="category" data-category="my-games">My games</button>
+    </div>
+    
+    {% if tegs %}
+        {% regroup tegs by status as grouped_tegs %}
+        {% for group in grouped_tegs %}
+            {% for item in group.list %}
+                <div class="block-game-categories" data-category="{{ group.grouper.name|slugify }}">
+                    <div class="game-sorting">
+                        <a href="{% url 'detail' item.game.pk %}">
+                            {% if item.game.image %}
+                                <img src="{{ item.game.image.url }}" class="game-image-sorting" width="284" height="163">
+                            {% else %}
+                                <div class="no-image">No cover</div>
+                            {% endif %}
+                        </a>
+                        <div class="title-game-sorting">
+                            <div class="name-sorting">
+                                <h3 class="game-title-sorting">
+                                    <a href="{% url 'detail' item.game.pk %}">{{ item.game.name }}</a>
+                                </h3>
+                                <div class="time">
+                                    <div class="date">
+                                        <img src="/static/img/calendar.svg" alt="Calendar"> {{ item.game.date }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-button-sorting">{{ group.grouper.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    
+    <div class="my-games-section" data-category="my-games">
+        {% if my_games %}
+
+            {% for game in my_games %}
+                <div class="block-game-categories" data-category="my-games">
+                    <div class="game-sorting">
+                        <a href="{% url 'detail' game.pk %}">
+                            {% if game.image %}
+                                <img src="{{ game.image.url }}" class="game-image-sorting" width="284" height="163">
+                            {% else %}
+                                <div class="no-image">No cover</div>
+                            {% endif %}
+                        </a>
+                        <div class="title-game-sorting">
+                            <div class="name-sorting">
+                                <h3 class="game-title-sorting">
+                                    <a href="{% url 'detail' game.pk %}">{{ game.name }}</a>
+                                </h3>
+                                <div class="time">
+                                    <div class="date">
+                                        <img src="/static/img/calendar.svg" alt="Calendar"> {{ game.date }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-button-sorting">My Game</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+
+        {% endif %}
+    </div>
+</div>
+
+
+
+{#НУЖНО БУДЕТ ЕСЛИ ВЫВОДИТЬ ИГРЫ КОТОРЫЕ ДОБАВИЛ ЮЗЕР#}
+{#    {% for game in profile.game.all %}#}
+{#        <div class="block-game-categories" data-category="{{ game.status.name|lower|cut:' ' }}">#}
+{#            <div class="game-sorting">#}
+{#                {% if game.image %}#}
+{#                    <img src="{{ game.image.url }}" class="game-image-sorting" width="284" height="163">#}
+{#                {% else %}#}
+{#                    <div class="no-image">No cover</div>#}
+{#                {% endif %}#}
+{#                <div class="title-game-sorting">#}
+{#                    <div class="name-sorting">#}
+{#                        <h3 class="game-title-sorting">{{ game.name }}</h3>#}
+{#                        <div class="time">#}
+{#                            <div class="date">#}
+{#                                <img src="/static/img/calendar.svg" alt="Calendar"> {{ game.date }}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="info-button-sorting">{{ game.status.name }}</div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% empty %}#}
+{#        <p>У вас пока нет игр.</p>#}
+{#    {% endfor %}#}
+</div>
+<script>
+document.querySelectorAll(".category").forEach(button => {
+    button.addEventListener("click", function () {
+        let selectedCategory = this.getAttribute("data-category");
+
+        // Убираем активность у всех кнопок
+        document.querySelectorAll(".category").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+
+        // Показываем или скрываем игры
+        document.querySelectorAll(".block-game-categories").forEach(game => {
+            let gameCategory = game.getAttribute("data-category");
+
+            if (selectedCategory === "all" || gameCategory === selectedCategory) {
+                game.classList.remove("hidden");
+            } else {
+                game.classList.add("hidden");
+            }
+        });
+
+        // Показываем или скрываем раздел "Мои игры"
+        let myGamesSection = document.querySelector(".my-games-section");
+        if (selectedCategory === "my-games" || selectedCategory === "all") {
+            myGamesSection.classList.remove("hidden");
+        } else {
+            myGamesSection.classList.add("hidden");
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+

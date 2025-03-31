@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+
+        .search-results {
+            background-color: #111;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 255, 0, 0.2);
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .search-results h2 {
+            color: #0f0;
+            margin-top: 0;
+        }
+
+        .search-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .search-results li {
+            padding: 10px 60px;
+            border-bottom: 1px solid #0a0;
+            display: flex;
+            align-items: center;
+            background-color: #222222;
+        }
+
+        .search-results li:last-child {
+            border-bottom: none;
+        }
+
+        .profile-avatar, .game-thumbnail {
+            width: 140px;
+            height: 140px;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .profile-name, .game-name {
+            color: #0f0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .no-results {
+            text-align: center;
+            font-size: 18px;
+            color: #0f0;
+        }
+    </style>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if games or profiles or categories or statuses %}
+        <div class="search-results">
+            {% if games %}
+                <h2>Games</h2>
+                <div class="container" id="games-container">
+                    {% for game in games %}
+                        <div class="game-block" data-game="{{ game.id }}">
+                            {% if game.image %}
+                                <a href="{% url 'detail' game.pk %}">
+                                    <img src="{{ game.image.url }}" class="game-cover">
+                                </a>
+                            {% else %}
+                                <div class="no-image">
+                                    <a href="{% url 'detail' game.pk %}">No cover</a>
+                                </div>
+                            {% endif %}
+                            <div class="title-game">
+                                <div class="name">
+                                    <h3 class="game-title">{{ game.name }}</h3>
+                                    <p class="game-description">{{ game.description }}</p>
+                                    <p class="game-date" style="display: none;">{{ game.date }}</p>
+                                    <p class="game-rating" style="display: none;">{{ game.average_rating }}</p>
+                                </div>
+                                <div class="info-button">Category</div>
+                            </div>
+                            <div class="modal">
+                                <div class="kategorii">
+                                    <div class="kategorii-title">Category:</div>
+                                    <div class="kategorii-list">
+                                        {% for category in game.category.all %}
+                                            <div class="kategorii-item">{{ category.name }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <h3>Description</h3>
+                                    <p>{{ game.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if profiles %}
+                <h2>Users</h2>
+                <ul>
+                    {% for profile in profiles %}
+                        <li>
+                            {% if profile.profile_picture %}
+                                <img src="{{ profile.profile_picture.url }}" alt="Avatar" class="profile-avatar">
+                            {% else %}
+                                <img src="{% static 'img/default_avatar.png' %}" alt="Default Avatar" class="profile-avatar">
+                            {% endif %}
+                            <a href="{% url 'profile-detail' profile.id %}" class="profile-name">{{ profile.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if categories %}
+                <h2>Categories</h2>
+                <ul>
+                    {% for category in categories %}
+                        <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% else %}
+        <p class="no-results">No results found.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,417 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+    <style>
+        .swiper-container {
+            max-width: 60%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            top: 70px;
+        }
+    </style>
+
+    <div class="slider-container">
+        <div class="text-content">
+            <h1>META RECORD LABEL</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                tristique.</p>
+            <button class="learn-more">Learn More</button>
+        </div>
+
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="static/img/img1.png" alt="Wave Image 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="static/img/img2.png" alt="Wave Image 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="static/img/img3.png" alt="Wave Image 3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="static/img/img1.png" alt="Wave Image 4">
+                </div>
+                <div class="swiper-slide">
+                    <img src="static/img/img2.png" alt="Wave Image 5">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h2>FOR YOU</h2>
+    <div class="container" id="games-container">
+        {% for game in games|slice:":6" %}
+            <div class="game-block" data-game="{{ game.id }}">
+                {% if game.image %}
+                    <a href="{% url 'detail' game.pk %}"> <img src="{{ game.image.url }}" class="game-cover"></a>
+                {% else %}
+                    <div class="no-image"><a href="{% url 'detail' game.pk %}">No cover</a></div>
+                {% endif %}
+                <div class="title-game">
+                    <div class="name">
+                        <h3 class="game-title">{{ game.name }}</h3>
+                        <p class="game-description">{{ game.description }}</p>
+                    </div>
+                    <div class="info-button">Category</div>
+                </div>
+                <div class="modal">
+                    <div class="kategorii">
+                        <div class="kategorii-title">Category:</div>
+                        <div class="kategorii-list">
+                            {% for category in game.category.all %}
+                                <a href="{% url 'game_catalog_by_category' category.id %}" class="kategorii-item">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h3>Description</h3>
+                        <p>{{ game.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+{#    <button class="learn-more" id="load-more-game">Learn More</button>#}
+
+    
+
+    </div>
+    </div>
+    {#        <button class="learn-more">Learn More</button>#}
+
+    </div>
+    <h2>
+        RECOMMENDATION
+    </h2>
+    <div class="container" id="high-rated-games-container">
+        {% for game in high_rated_games|slice:":6" %}
+            <div class="game-block" data-game="{{ game.id }}">
+                {% if game.image %}
+                    <a href="{% url 'detail' game.pk %}"> <img src="{{ game.image.url }}" class="game-cover"></a>
+                {% else %}
+                    <div class="no-image"><a href="{% url 'detail' game.pk %}">No cover</a></div>
+                {% endif %}
+                <div class="title-game">
+                    <div class="name">
+                        <h3 class="game-title">{{ game.name }}</h3>
+                        <p class="game-description">{{ game.description }}</p>
+                    </div>
+                    <div class="info-button">Category</div>
+                </div>
+                <div class="modal">
+                    <div class="kategorii">
+                        <div class="kategorii-title">Category:</div>
+                        <div class="kategorii-list">
+                            {% for category in game.category.all %}
+                                <a href="{% url 'game_catalog_by_category' category.id %}" class="kategorii-item">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h3>Description</h3>
+                        <p>{{ game.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Нет игр с высоким рейтингом.</p>
+        {% endfor %}
+    </div>
+
+
+
+
+    <div class="title-phase">
+        Roadmap
+    </div>
+    <div class="kryg">
+        <img src="static/img/kryg.svg" alt=""></div>
+
+
+
+    <div class="roadmap-container">
+        <div class="phase-box">
+            <div class="phase-number">
+                1
+            </div>
+            <div class="phase-completion">
+                <p>PHASE 1 - COMPLETED</p>
+                <h3>SPRING 2022 - PRE LAUNCH</h3></div>
+        </div>
+        <div class="phase-content">
+            <div class="phese-text">
+                <p>
+                    Website 1.2<br>
+                    Discord community promotion<br>
+                    MINTING WAVE NFTs<br><br></p>
+                <h4>WAVE NFTs will be 100% pre-minted and launched as an<br> OpenOcean collection
+                </h4></div>
+            <div class="phase-image">
+                <img src="static/img/img2.png" alt="Wave NFT">
+            </div>
+        </div>
+        <div class="kryg-t">
+            <img src="static/img/kryg.svg" alt=""></div>
+
+    </div>
+
+    <div class="palka"></div>
+
+
+    <div class="roadmap-container">
+
+        <div class="phase-box">
+            <div class="phase-number">
+                2
+            </div>
+            <div class="phase-completion">
+                <p>PHASE 1 - COMPLETED</p>
+                <h3>SPRING 2022 - PRE LAUNCH</h3></div>
+        </div>
+
+        <div class="phase-content">
+            <div class="phese-text">
+                <p>
+                    Website 1.2<br>
+                    Discord community promotion<br>
+                    MINTING WAVE NFTs<br><br></p>
+                <h4>WAVE NFTs will be 100% pre-minted and launched as an<br> OpenOcean collection
+                </h4></div>
+            <div class="phase-image">
+                <img src="static/img/img1.png" alt="Wave NFT">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="palka"></div>
+
+    <div class="roadmap-container">
+        <div class="phase-box">
+            <div class="phase-number">
+                3
+            </div>
+            <div class="phase-completion">
+                <p>PHASE 1 - COMPLETED</p>
+                <h3>SPRING 2022 - PRE LAUNCH</h3></div>
+        </div>
+        <div class="phase-content">
+            <div class="phese-text">
+                <p>
+                    Website 1.2<br>
+                    Discord community promotion<br>
+                    MINTING WAVE NFTs<br><br></p>
+                <h4>WAVE NFTs will be 100% pre-minted and launched as an<br> OpenOcean collection
+                </h4></div>
+            <div class="phase-image">
+                <img src="static/img/img3.png" alt="Wave NFT">
+            </div>
+        </div>
+    </div>
+
+    <!-- Link Swiper's JS -->
+
+
+    <section class="team-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <h1>TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM</h1>
+                <h1>TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM</h1>
+            </div>
+        </div>
+        <div class="team-container">
+            {% if user_profile %}
+                {% if friends %}
+                    {% for friend in friends|slice:"3" %}
+
+                        <div class="team-member">
+                            {% if friend.profile_picture %}
+                                <a href="{% url 'profile-detail' friend.pk %}"><img
+                                        src="{{ friend.profile_picture.url }}" alt="{{ friend.name }}"></a>
+                            {% else %}
+                                <a href="{% url 'profile-detail' friend.pk %}"><img src="static/img/default-profile.png"
+                                                                                    alt="Default Profile"></a>
+                            {% endif %}
+                            <a href="{% url 'profile-detail' friend.pk %}"><h3>{{ friend.name }}</h3></a>
+
+                            <div class="social-links">
+                                <!-- При необходимости добавить социальные ссылки друзей -->
+                            </div>
+                            <p class="description">{{ friend.description|default:"No description available" }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-friends">No friends yet.</p>
+                {% endif %}
+            {% else %}
+                <p class="login-warning">Please log in to see your profile and friends.</p>
+            {% endif %}
+        </div>
+
+    </section>
+
+
+    <section class="join-discord">
+        <div class="left-content">
+            <h1>JOIN OUR<br><span>DISCORD</span></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                tristique.</p>
+            <a href="#" class="discord-btn">
+                <img src="static/img/dis.svg" alt="Discord Icon"> Join Discord
+            </a>
+        </div>
+        <div class="right-content">
+            <img src="static/img/img3.png" alt="Wave Image">
+        </div>
+    </section>
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    </body>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3, // Показываем 3 слайда одновременно
+            spaceBetween: 10,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            on: {
+                slideChangeTransitionEnd: function () {
+                    document.querySelectorAll('.swiper-slide img').forEach(img => {
+                        img.style.transform = 'scale(1)';
+                    });
+                    document.querySelector('.swiper-slide-active img').style.transform = 'scale(1.2)';
+                }
+            }
+        });
+
+document.addEventListener("click", function (event) {
+    if (event.target.id === "load-more-game") {
+        loadMoreGames();
+    }
+});
+
+function loadMoreGames() {
+    fetch(`/load-more-games/?offset=${offset}`)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('games-container');
+            data.games.forEach(game => {
+                let gameHTML = `
+                <div class="game-block" data-game="${game.id}">
+                    ${game.image ? `<a href="/detail/${game.id}/"><img src="${game.image}" class="game-cover"></a>` : `<div class="no-image"><a href="/detail/${game.id}/">No cover</a></div>`}
+                    <div class="title-game">
+                        <div class="name">
+                            <h3 class="game-title">${game.name}</h3>
+                            <p class="game-description">${game.description}</p>
+                        </div>
+                        <div class="info-button">Category</div>
+                    </div>
+                    <div class="modal">
+                        <div class="kategorii">
+                            <div class="kategorii-title">Category:</div>
+                            <div class="kategorii-list">
+                                ${game.categories.map(category => 
+                                    `<a href="/game_catalog_by_category/${category.id}" class="kategorii-item">${category.name}</a>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h3>Description</h3>
+                            <p>${game.description}</p>
+                        </div>
+                    </div>
+                </div>`;
+                container.insertAdjacentHTML('beforeend', gameHTML);
+            });
+
+            offset += 6;
+
+            if (!data.has_more) {
+                document.getElementById('load-more-game').style.display = 'none';
+            }
+        })
+        .catch(error => console.error("Ошибка загрузки данных:", error));
+}
+
+    </script>
+    {#<script>#}
+    {#    var swiper = new Swiper(".swiper-container", {#}
+    {#        slidesPerView: 3, // Показываем три слайда#}
+    {#        spaceBetween: 10, // Расстояние между слайдами#}
+    {#        loop: true, // Бесконечный цикл#}
+    {#        centeredSlides: true, // Центрируем активный слайд#}
+    {#        autoplay: {#}
+    {#            delay: 3000, // Автопрокрутка каждые 3 секунды#}
+    {#            disableOnInteraction: false, // Продолжает автопрокрутку даже после взаимодействия#}
+    {#        },#}
+    {#        speed: 800, // Плавное переключение#}
+    {#        on: {#}
+    {#            init: function () {#}
+    {#                setSlideStyles(); // Устанавливаем стили при инициализации#}
+    {#            },#}
+    {#            slideChangeTransitionEnd: function () {#}
+    {#                setSlideStyles(); // Применяем стили после изменения слайда#}
+    {#            },#}
+    {#        },#}
+    {#    });#}
+    {##}
+    {#    // Функция для установки прозрачности и масштаба#}
+    {#    function setSlideStyles() {#}
+    {#        let slides = document.querySelectorAll(".swiper-slide");#}
+    {#        slides.forEach((slide) => {#}
+    {#            if (slide.classList.contains("swiper-slide-active")) {#}
+    {#                slide.style.opacity = "1"; // Активный слайд полностью виден#}
+    {#                slide.style.transform = "scale(1.1)"; // Увеличенный масштаб активного слайда#}
+    {#            } else {#}
+    {#                slide.style.opacity = "0.5"; // Неактивные слайды полупрозрачны#}
+    {#                slide.style.transform = "scale(0.9)"; // Уменьшенный масштаб неактивных слайдов#}
+    {#            }#}
+    {#        });#}
+    {#    }#}
+    {##}
+    {#    let thumbnails = document.querySelectorAll(".thumbnails img");#}
+    {#    let mainImage = document.getElementById("main-image");#}
+    {##}
+    {#    // Function to change main image when thumbnail is clicked#}
+    {#    function changeImage(imageSrc, thumbnailElement) {#}
+    {#        mainImage.src = imageSrc;#}
+    {##}
+    {#        // Remove active class from all thumbnails and add to the clicked one#}
+    {#        thumbnails.forEach((img) => img.classList.remove("active"));#}
+    {#        thumbnailElement.classList.add("active");#}
+    {#    }#}
+    {##}
+    {#    // Function to reset main image to the first thumbnail on arrow click#}
+    {#    function changeToFirstImage() {#}
+    {#        let firstImageSrc = thumbnails[0].src;#}
+    {#        mainImage.src = firstImageSrc;#}
+    {##}
+    {#        // Update the active thumbnail to the first one#}
+    {#        thumbnails.forEach((img) => img.classList.remove("active"));#}
+    {#        thumbnails[1].classList.add("active");#}
+    {#    }#}
+    {##}
+    {#</script>#}
+
+
+{% endblock %}

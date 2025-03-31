@@ -1,0 +1,117 @@
+{% load static %}
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .footer-content {
+        position: relative;
+        height: auto;
+        background-color: #353535;
+        width: 100%;
+        margin-top: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-content .left,
+    .footer-content .middle,
+    .footer-content .right {
+        width: 100%;
+        max-width: 800px;
+        margin-bottom: 20px;
+    }
+
+    .middle ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .middle li {
+        font-size: 14px;
+    }
+
+    .middle li a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+
+
+
+
+    @media (min-width: 768px) {
+        .footer-content {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+            padding: 40px;
+        }
+
+        .footer-content .left,
+        .footer-content .middle,
+        .footer-content .right {
+            width: auto;
+        }
+
+        .middle {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+    }
+</style>
+
+<div class="content">
+    <!-- Main content goes here -->
+</div>
+
+<div class="footer-content">
+    <div class="left">
+        <a href="{% url 'index' %}"> <h2>Meta </h2></a>
+    </div>
+    <div class="middle">
+        <ul>
+            <li><a href="#">Wave NFTs</a></li>
+            <li><a href="#">Stories</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Licencing</a></li>
+            <li><a href="#">Style Guide</a></li>
+            <li><a href="#">Changelog</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        <div class="media-social">
+            <div class="media-el">
+                <img src="{% static 'img/twitter.svg' %}" alt="twitter">
+            </div>
+            <div class="media-el">
+                <img src="{% static 'img/discord.svg' %}" alt="discord">
+            </div>
+            <div class="media-el">
+                
+                <img src="{% static 'img/youtude.svg' %}" alt="youtube">
+            </div>
+            <div class="media-el">
+                <img src="{% static 'img/tg.svg' %}" alt="tg">
+            </div>
+        </div>
+    </div>
+</div>
