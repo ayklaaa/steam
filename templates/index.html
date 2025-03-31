@@ -44,7 +44,7 @@
     </div>
     <h2>FOR YOU</h2>
     <div class="container" id="games-container">
-        {% for game in games %}
+        {% for game in games|slice:":6" %}
             <div class="game-block" data-game="{{ game.id }}">
                 {% if game.image %}
                     <a href="{% url 'detail' game.pk %}"> <img src="{{ game.image.url }}" class="game-cover"></a>
@@ -95,7 +95,7 @@
         RECOMMENDATION
     </h2>
     <div class="container" id="high-rated-games-container">
-        {% for game in high_rated_games %}
+        {% for game in high_rated_games|slice:":6" %}
             <div class="game-block" data-game="{{ game.id }}">
                 {% if game.image %}
                     <a href="{% url 'detail' game.pk %}"> <img src="{{ game.image.url }}" class="game-cover"></a>
