@@ -79,8 +79,7 @@ WSGI_APPLICATION = 'steam.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    DATABASE_URL=postgres://steam_3b82_user:YOUR_PASSWORD@dpg-cvl4lrbe5dus73c058i0-a:5432/steam_3b82
-
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 # Password validation
