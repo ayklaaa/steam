@@ -13,3 +13,6 @@ typing_extensions==4.13.0
 tzdata==2024.2
 whitenoise==6.9.0
 python-decouple
+psycopg2-binary
+dj-database-url
+
