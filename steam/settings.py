@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-!_*(l=jq96!^f^!y&%+!%=db8_1yzfiw-@1ipscqk+=$^%i7t$
 DEBUG = False
 
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+ALLOWED_HOSTS = ['steam.onrender.com', 'localhost', '127.0.0.1']
+
 
 # Application definition
 
