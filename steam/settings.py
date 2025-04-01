@@ -85,10 +85,10 @@ DATABASES = {
         'NAME': 'steam_30i0',
         'USER': 'steam_30i0_user',
         'PASSWORD': 'sBUcE3NbbeVze3X2r5neovuglQgo1Lzh',
-        'HOST': 'dpg-cvlsstmuk2gs73duba70-a.oregon-postgres.render.com',
+        'HOST': 'dpg-cvlsstmuk2gs73duba70-a.oregon-postgres.render.com',  # Обратите внимание на полное имя хоста
         'PORT': '5432',
         'OPTIONS': {
-            'sslmode': 'require',  # Обязательно для Render.com
+            'sslmode': 'require',  # Критически важно для Render.com
         },
     }
 }
