@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'steam.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_database_name',
-        'USER': 'your_database_user',
-        'PASSWORD': 'your_database_password',
-        'HOST': 'your_database_host',
+        'NAME': 'steam_30i0',
+        'USER': 'steam_30i0_user',
+        'PASSWORD': 'sBUcE3NbbeVze3X2r5neovuglQgo1Lzh',
+        'HOST': 'dpg-cvlsstmuk2gs73duba70-a',
         'PORT': '5432',
     }
 }
