@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!_*(l=jq96!^f^!y&%+!%=db8_1yzfiw-@1ipscqk+=$^%i7t$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['steam-1.onrender.com', 'localhost']  # Замените your-app-name
+ALLOWED_HOSTS = ['*']
 
 
 
