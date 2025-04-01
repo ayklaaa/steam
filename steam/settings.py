@@ -85,8 +85,11 @@ DATABASES = {
         'NAME': 'steam_30i0',
         'USER': 'steam_30i0_user',
         'PASSWORD': 'sBUcE3NbbeVze3X2r5neovuglQgo1Lzh',
-        'HOST': 'dpg-cvlsstmuk2gs73duba70-a',
+        'HOST': 'dpg-cvlsstmuk2gs73duba70-a.oregon-postgres.render.com',
         'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',  # Обязательно для Render.com
+        },
     }
 }
 # Password validation
