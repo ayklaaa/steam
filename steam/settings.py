@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+from decouple import config
+import dj_database_url
 import os
 from pathlib import Path
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!_*(l=jq96!^f^!y&%+!%=db8_1yzfiw-@1ipscqk+=$^%i7t$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["steam.onrender.com"]
+
+ALLOWED_HOSTS = ['*']
+
+
 
 # Application definition
 
@@ -74,11 +81,17 @@ WSGI_APPLICATION = 'steam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'steam_30i0',
+        'USER': 'steam_30i0_user',
+        'PASSWORD': 'sBUcE3NbbeVze3X2r5neovuglQgo1Lzh',
+        'HOST': 'dpg-cvlsstmuk2gs73duba70-a.oregon-postgres.render.com',  # Обратите внимание на полное имя хоста
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',  # Критически важно для Render.com
+        },
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
