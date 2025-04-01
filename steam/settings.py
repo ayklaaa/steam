@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-!_*(l=jq96!^f^!y&%+!%=db8_1yzfiw-@1ipscqk+=$^%i7t$
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['steam.onrender.com', 'localhost']  # Замените your-app-name
+ALLOWED_HOSTS = ['steam-1.onrender.com', 'localhost']  # Замените your-app-name
 
 
 
