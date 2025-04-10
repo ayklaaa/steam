@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+
 {% block main %}
     {% load static %}
 
@@ -672,6 +674,12 @@
             margin-right: 5px;
             transition: background-color 0.3s;
         }
+        .like-reply-btn:active{
+            border: 1px solid #262626;
+        }
+         .like-reply-btn:focus{
+            border: 1px solid #262626;
+        }
 
         .block-ot {
             display: flex;
@@ -708,7 +716,9 @@
 
         #}#}
 
-
+ body {
+            scroll-behavior: smooth; /* Примечание: Страница прокручивается плавно */
+        }
     </style>
 
 
@@ -723,7 +733,7 @@
             </div>
             <div class="buttons">
 
-                <button id="wishlist-btn" data-game-id="{{ game.id }} ">
+                <button id="wishlist-btn" data-game-id="{{ game.id }}">
                   Wishlist <img src="/static/img/heard.svg" height="10px">
                 </button>
                 <form method="post" action="{% url 'add_tag_to_game' game.id %}">
@@ -734,7 +744,7 @@
                         {% endfor %}
                     </select>
                 </form>
-                </form>
+
 
                 <button id="infoBtn">Information <img src="/static/img/arrov.svg"></button>
                 <div class="modal1 hidden" id="modal1">
@@ -866,33 +876,35 @@
                 <p class="feature-description">{{ feature.description }}</p>
             {% endfor %}
         </div>
-        <div class="rating">
-            <h1>Rate the game</h1>
-            <div class="info">
-                <p>Overall game rating - {{ average_rating|floatformat:1 }} / 5 ({{ rating_count }} votes)</p>
+<div class="rating" id="rating">
+    <h1>Rate the game</h1>
+    <div class="info">
+        <p>Overall game rating - {{ average_rating|floatformat:1 }} / 5 ({{ rating_count }} votes)</p>
 
-                {% if user.is_authenticated %}
-                    <p>Give your rating:</p>
-                    <div class="user-rating">
-                        <form id="rating-form" method="post" action="{% url 'rate_game' game.id %}">
-                            {% csrf_token %}
-                            <div class="star-rating">
-                                {% for i in "54321" %}
-                                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}"
-                                           {% if user_rating == i|add:"0" %}checked{% endif %}
-                                           onchange="this.form.submit()">
-                                    <label for="star{{ i }}">★</label>
-                                {% endfor %}
-                            </div>
-                        </form>
+        {% if user.is_authenticated %}
+            <p>Give your rating:</p>
+            <div class="user-rating">
+                <form id="rating-form" method="post" action="{% url 'rate_game' game.id %}#rating">
+                    {% csrf_token %}
+                    <div class="star-rating">
+                        {% for i in "54321" %}
+                            <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}"
+                                   {% if user_rating == i|add:"0" %}checked{% endif %}
+                                   onchange="this.form.submit()">
+                            <label for="star{{ i }}">★</label>
+                        {% endfor %}
                     </div>
-                {% else %}
-                    <p><a href="{% url 'auth:login' %}">Войдите</a>, чтобы оценить игру</p>
-                {% endif %}
+                </form>
             </div>
+        {% else %}
+            <p><a href="{% url 'auth:login' %}">Войдите</a>, чтобы оценить игру</p>
+        {% endif %}
+    </div>
 
 
-            <div class="coments">
+
+
+            <div class="coments" id="comments">
                 <h1>Comments</h1>
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'add_comment' game.id %}">
@@ -1116,9 +1128,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "added") {
-                        alert("Игра добавлена в вишлист!");
+                        alert("The game has been added to the wishlist!");
                     } else if (data.status === "exists") {
-                        alert("Эта игра уже в вашем вишлисте.");
+                        alert("This game is already on your wishlist.");
                     }
                 })
                 .catch(error => console.error("Ошибка:", error));

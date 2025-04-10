@@ -11,6 +11,16 @@
             position: relative;
             top: 70px;
         }
+
+        button.learn-more a {
+            color: #222222;
+        }
+a.discord-btn:hover  {
+            color: #222222;
+        }
+        html {
+            scroll-behavior: smooth; /* Примечание: Страница прокручивается плавно */
+        }
     </style>
 
     <div class="slider-container">
@@ -18,7 +28,7 @@
             <h1>META RECORD LABEL</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
                 tristique.</p>
-            <button class="learn-more">Learn More</button>
+            <button class="learn-more"><a href="#title-phase"> Learn More</a></button>
         </div>
 
         <div class="swiper-container">
@@ -82,9 +92,9 @@
 
 
 
-{#    <button class="learn-more" id="load-more-game">Learn More</button>#}
+    {#    <button class="learn-more" id="load-more-game">Learn More</button>#}
 
-    
+
 
     </div>
     </div>
@@ -127,14 +137,14 @@
                 </div>
             </div>
         {% empty %}
-            <p>Нет игр с высоким рейтингом.</p>
+            <p>There are no high rated games.</p>
         {% endfor %}
     </div>
 
 
 
 
-    <div class="title-phase">
+    <div class="title-phase" id='title-phase'>
         Roadmap
     </div>
     <div class="kryg">
@@ -304,19 +314,19 @@
             }
         });
 
-document.addEventListener("click", function (event) {
-    if (event.target.id === "load-more-game") {
-        loadMoreGames();
-    }
-});
+        document.addEventListener("click", function (event) {
+            if (event.target.id === "load-more-game") {
+                loadMoreGames();
+            }
+        });
 
-function loadMoreGames() {
-    fetch(`/load-more-games/?offset=${offset}`)
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('games-container');
-            data.games.forEach(game => {
-                let gameHTML = `
+        function loadMoreGames() {
+            fetch(`/load-more-games/?offset=${offset}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('games-container');
+                    data.games.forEach(game => {
+                        let gameHTML = `
                 <div class="game-block" data-game="${game.id}">
                     ${game.image ? `<a href="/detail/${game.id}/"><img src="${game.image}" class="game-cover"></a>` : `<div class="no-image"><a href="/detail/${game.id}/">No cover</a></div>`}
                     <div class="title-game">
@@ -330,9 +340,9 @@ function loadMoreGames() {
                         <div class="kategorii">
                             <div class="kategorii-title">Category:</div>
                             <div class="kategorii-list">
-                                ${game.categories.map(category => 
-                                    `<a href="/game_catalog_by_category/${category.id}" class="kategorii-item">${category.name}</a>`
-                                ).join('')}
+                                ${game.categories.map(category =>
+                            `<a href="/game_catalog_by_category/${category.id}" class="kategorii-item">${category.name}</a>`
+                        ).join('')}
                             </div>
                         </div>
                         <div class="description">
@@ -341,17 +351,17 @@ function loadMoreGames() {
                         </div>
                     </div>
                 </div>`;
-                container.insertAdjacentHTML('beforeend', gameHTML);
-            });
+                        container.insertAdjacentHTML('beforeend', gameHTML);
+                    });
 
-            offset += 6;
+                    offset += 6;
 
-            if (!data.has_more) {
-                document.getElementById('load-more-game').style.display = 'none';
-            }
-        })
-        .catch(error => console.error("Ошибка загрузки данных:", error));
-}
+                    if (!data.has_more) {
+                        document.getElementById('load-more-game').style.display = 'none';
+                    }
+                })
+                .catch(error => console.error("Ошибка загрузки данных:", error));
+        }
 
     </script>
     {#<script>#}

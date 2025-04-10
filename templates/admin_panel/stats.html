@@ -1,0 +1,59 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Statistics - Admin Panel{% endblock %}
+
+{% block content %}
+    <h2>Statistics & Charts</h2>
+
+    <div class="dashboard">
+        <div class="card">
+            <h2>Total Users</h2>
+            <div class="stats">{{ total_users }}</div>
+        </div>
+
+        <div class="card">
+            <h2>Total Games</h2>
+            <div class="stats">{{ total_games }}</div>
+        </div>
+
+        <div class="card">
+            <h2>Total Comments</h2>
+            <div class="stats">{{ total_comments }}</div>
+        </div>
+
+        <div class="card">
+            <h2>Total Ratings</h2>
+            <div class="stats">{{ total_ratings }}</div>
+        </div>
+    </div>
+
+    <div class="chart-container" style="width: 80%; margin: auto; margin-top: 50px;">
+        <canvas id="userGameChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('userGameChart').getContext('2d');
+        var userGameChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Users', 'Games', 'Comments', 'Ratings'],
+                datasets: [{
+                    label: 'Total Counts',
+                    data: [{{ total_users }}, {{ total_games }}, {{ total_comments }}, {{ total_ratings }}],
+                    backgroundColor: '#00bfff',
+                    borderColor: '#00bfff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+{% endblock %}

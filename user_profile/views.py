@@ -156,4 +156,3 @@ def toggle_friend(request, pk):
     return redirect(reverse('profile-detail', kwargs={'pk': pk}))
 
 
-

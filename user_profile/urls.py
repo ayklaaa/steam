@@ -13,6 +13,7 @@ urlpatterns = [
     path('profile/<int:pk>/friend/', toggle_friend, name='toggle-friend'),
     path('profile/<int:pk>/follower/', FollowersDeleteView.as_view(), name='delete-friend'),
 
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

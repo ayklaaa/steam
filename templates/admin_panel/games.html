@@ -1,0 +1,45 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Games - Admin Panel{% endblock %}
+
+{% block content %}
+
+
+   
+
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Game Name</th>
+                <th>Category</th>
+                <th>Average Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="game-table">
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.id }}</td>
+                    <td>{{ game.name }}</td>
+                    <td>
+                        {% for category in game.category.all %}
+                            {{ category.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ game.average_rating }}</td>
+                    <td>
+                        <a href="{% url 'edit_game' game.id %}" style="color: #00bfff;">Edit</a> |
+                        <a href="{% url 'delete_tag' game.id %}" style="color: red;">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No games found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+    

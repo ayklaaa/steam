@@ -1,0 +1,41 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Favorite Games - Admin Panel{% endblock %}
+
+{% block content %}
+    <h2>Manage Favorite Games</h2>
+
+    <div class="search-filter">
+        <input type="text" placeholder="Search by user or game..." id="search-favorites">
+    </div>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Game</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="favorite-table">
+            {% for favorite in favorites %}
+                <tr>
+                    <td>{{ favorite.id }}</td>
+                    <td>{{ favorite.user.name }}</td>
+                    <td>{{ favorite.game.name }}</td>
+                    <td>{{ favorite.date_added }}</td>
+                    <td>
+{#                        <a href="{% url 'admin_delete_favorite' favorite.id %}" style="color: red;">Delete</a>#}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No favorite games found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

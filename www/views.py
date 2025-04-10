@@ -19,7 +19,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 
 from django.views.generic import CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from www.models import MGame
 from .models import MUserProfile
@@ -162,11 +162,13 @@ def add_comment(request, game_id):
             comment.game = game
             comment.save()
 
-    return redirect("detail", pk=game.id)
+    redirect_url = reverse("detail", kwargs={'pk': game.id}) + '#comments'
+    return redirect(redirect_url)
 
 
 @login_required
 def add_reply(request, comment_id):
+    """Добавление ответа на комментарий"""
     comment = get_object_or_404(MComment, id=comment_id)
 
     if request.method == "POST":
@@ -176,9 +178,9 @@ def add_reply(request, comment_id):
             reply.user = request.user
             reply.comment = comment
             reply.save()
-            return redirect('detail', pk=comment.game.id)  # Перенаправление на ту же страницу
 
-    return redirect('detail', pk=comment.game.id)
+    redirect_url = reverse("detail", kwargs={'pk': comment.game.id}) + '#comments'
+    return redirect(redirect_url)
 
 
 @login_required
@@ -266,18 +268,24 @@ def dislike_reply(request, reply_id):
 @login_required
 def rate_game(request, game_id):
     game = get_object_or_404(MGame, id=game_id)
-    user_profile = request.user.muserprofile  # Проверяем профиль пользователя
+    user_profile = request.user.muserprofile
 
     if request.method == "POST":
         rating_value = int(request.POST.get("rating", 0))
         if 1 <= rating_value <= 5:
-            # Обновляем или создаем рейтинг
-            rating, created = MRating.objects.update_or_create(
-                user=user_profile, game=game,
+            MRating.objects.update_or_create(
+                user=user_profile,
+                game=game,
                 defaults={"rating": rating_value}
             )
 
-    return redirect("detail", pk=game.id)  # Перенаправляем обратно
+    redirect_url = request.META.get('HTTP_REFERER') or reverse('detail', kwargs={'pk': game.id})
+
+    if '#rating' not in redirect_url:
+        redirect_url += '#rating'
+
+    return redirect(redirect_url)
+
 
 
 class CatalogView(ListView):

@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+
+        body {
+            margin: 0;
+            font-family: "DMMono-Light";
+            background-color: #121212;
+            color: #fff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav.nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav.nav a {
+            color: #fff;
+            text-decoration: none;
+
+            transition: color 0.3s ease;
+        }
+
+        nav.nav a:hover {
+            color: #4ad34a;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .card {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .search-filter {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-filter input {
+            width: 50%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Admin Panel</h1>
+    <nav class="nav">
+
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'admin_users' %}">Users</a>
+        <a href="{% url 'admin_games' %}">Games</a>
+
+        <a href="{% url 'admin_comments' %}">Comments</a>
+       
+{#        <a href="{% url 'admin_favorites' %}">Favorites</a>#}
+{#        <a href="{% url 'admin_stats' %}">Stats</a>#}
+    </nav>
+</header>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

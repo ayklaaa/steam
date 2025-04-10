@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Tag</title>
+    <style>
+        /* Используй стиль из предыдущей страницы */
+    </style>
+</head>
+<body>
+
+<h1>Add New Tag</h1>
+
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Tag Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <button type="submit">Add Tag</button>
+    </form>
+</div>
+
+</body>
+</html>

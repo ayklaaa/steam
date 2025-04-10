@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Teglist</title>
+    <style>
+        body { background: #121212; color: white; font-family: Arial; }
+        .container { max-width: 600px; margin: 100px auto; padding: 30px; background: #1f1f1f; border-radius: 10px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #333; background: #222; color: white; }
+        .btn { background: #00bfff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #0088cc; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Add Teglist</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}
+        <button type="submit" class="btn">Save Teglist</button>
+    </form>
+</div>
+</body>
+</html>

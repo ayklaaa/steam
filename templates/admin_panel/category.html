@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for category in category %}
+    {{ category }}<a href="{% url 'delete_tag' category.id %}" style="color: #00bfff;">add</a> |
+{% endfor %}
+
+</body>
+</html>

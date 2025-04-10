@@ -1,0 +1,44 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Ratings - Admin Panel{% endblock %}
+
+{% block content %}
+    <h2>Manage Ratings</h2>
+
+    <div class="search-filter">
+        <input type="text" placeholder="Search by game or user..." id="search-ratings">
+    </div>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Game</th>
+                <th>Rating</th>
+                <th>Date Rated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="rating-table">
+            {% for rating in ratings %}
+                <tr>
+                    <td>{{ rating.id }}</td>
+                    <td>{{ rating.user.name }}</td>
+                    <td>{{ rating.game.name }}</td>
+                    <td>{{ rating.rating }}</td>
+                    <td>{{ rating.date_rated }}</td>
+                    <td>
+                        <a href="{% url 'admin_edit_rating' rating.id %}" style="color: #00bfff;">Edit</a> |
+                        <a href="{% url 'admin_delete_rating' rating.id %}" style="color: red;">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No ratings found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

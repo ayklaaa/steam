@@ -1,0 +1,42 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Comments - Admin Panel{% endblock %}
+
+{% block content %}
+
+
+
+
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Game</th>
+                <th>Comment</th>
+                <th>Date Posted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="comment-table">
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.user.username }}</td>
+                    <td>{{ comment.game.name }}</td>
+                    <td>{{ comment.text|truncatewords:10 }}</td>
+                    <td>{{ comment.date_posted }}</td>
+                    <td>
+{#                        <a href="{% url 'admin_edit_comment' comment.id %}" style="color: #00bfff;">Edit</a> |#}
+                        <a href="{% url 'delete_com' comment.id %}" style="color: red;">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No comments found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

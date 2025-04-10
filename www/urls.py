@@ -32,6 +32,9 @@ urlpatterns = [
     path("comment/<int:comment_id>/dislike/", dislike_comment, name="dislike_comment"),
     path('reply/<int:reply_id>/like/', like_reply, name='like_reply'),
     path('reply/<int:reply_id>/dislike/', dislike_reply, name='dislike_reply'),
+
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
