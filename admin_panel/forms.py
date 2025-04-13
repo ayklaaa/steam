@@ -1,9 +1,12 @@
 from django import forms
 
-from user_profile.models import *
-from .models import *
+
+
 from django.forms import inlineformset_factory
-from www.models import MGame
+
+from user_profile.models import Teg
+from www.models import MComment, MReply, MCategory, MGame, MImage
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
