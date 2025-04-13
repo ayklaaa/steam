@@ -163,7 +163,7 @@ class EditGameView(LoginRequiredMixin, UpdateView):
     model = MGame
     template_name = 'addgame.html'
     form_class = GameForm
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('admin_games')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
