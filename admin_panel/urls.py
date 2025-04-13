@@ -16,8 +16,7 @@ urlpatterns = [
     path('add_tag/', views.add_tag, name='add_tag'),
     path('edit_tag/<int:id>/', views.edit_tag, name='edit_tag'),
     path('add_category/', views.add_category, name='add_category'),
-    path('add_status/', views.add_status, name='add_status'),
-    path('add_teglist/', views.add_teglist, name='add_teglist'),
+
     path('delete_tag/<int:pk>/', deleteteg.as_view(), name='delete_tag'),
     path('delete_com/<int:pk>/', deletecom.as_view(), name='delete_com'),
     path('edit-game/<int:pk>/', GameEditView.as_view(), name='edit_game'),
