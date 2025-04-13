@@ -5,13 +5,14 @@ from django import forms
 from django.forms import inlineformset_factory
 
 from user_profile.models import Teg
-from www.models import MComment, MReply, MCategory, MGame, MImage
+from www.models import MComment, MReply, MCategory, MGame, MImage, MStatus
 
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = MComment
         fields = ["text"]
+
 
 
 class TagSelectionForm(forms.ModelForm):
