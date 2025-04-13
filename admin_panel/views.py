@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DeleteView, ListView, TemplateView, UpdateView
 
 from user_profile.models import MUserProfile, TegList, MFavoriteGame
@@ -155,12 +156,11 @@ class StatusView(ListView):
     context_object_name = 'status'
 
 
-class GameEditView(LoginRequiredMixin, UpdateView):
+class EditGameView(LoginRequiredMixin, UpdateView):
     model = MGame
-    context_object_name = 'game'
-    template_name = 'admin_panel/edit_game.html'
+    template_name = 'addgame.html'
     form_class = GameForm
-    success_url = '/admin/games/'
+    success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -180,7 +180,6 @@ class GameEditView(LoginRequiredMixin, UpdateView):
             image_formset.instance = self.object
             image_formset.save()
         else:
-            self.object.delete()
             return self.form_invalid(form)
 
         return super().form_valid(form)
