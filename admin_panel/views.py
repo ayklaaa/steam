@@ -8,9 +8,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.shortcuts import render
 from django.views.generic import DeleteView, ListView, TemplateView, UpdateView
 
-from user_profile.models import *
+from user_profile.models import MUserProfile, TegList, MFavoriteGame
 from www.forms import ImageFormSet, GameForm
-from www.models import *
+from www.models import MGame, MComment, MRating, MCategory, MStatus
+
 from .forms import MStatusForm, MTeglistForm
 from .models import *
 from django.db.models import Count
