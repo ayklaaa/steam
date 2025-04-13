@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DeleteView, ListView, TemplateView, UpdateView
 
 from user_profile.models import *
@@ -14,6 +15,7 @@ from www.models import *
 from .forms import MStatusForm, MTeglistForm
 from .models import *
 from django.db.models import Count
+from www.models import MGame
 
 # Представление для главной панели админа
 @login_required
@@ -154,12 +156,12 @@ class StatusView(ListView):
     context_object_name = 'status'
 
 
-class GameEditView(LoginRequiredMixin, UpdateView):
+
+class EditGameView(LoginRequiredMixin, UpdateView):
     model = MGame
-    context_object_name = 'game'
-    template_name = 'admin_panel/edit_game.html'
+    template_name = 'addgame.html'
     form_class = GameForm
-    success_url = '/games/'
+    success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -172,15 +174,13 @@ class GameEditView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         context = self.get_context_data()
         image_formset = context['image_formset']
-        
-        # Сохраняем форму игры, но не коммитим в БД пока не проверим images
-        self.object = form.save(commit=False)
-        
+
+        self.object = form.save()
+
         if image_formset.is_valid():
-            self.object.save()  # Сохраняем игру
             image_formset.instance = self.object
-            image_formset.save()  # Сохраняем изображения
-            return super().form_valid(form)
+            image_formset.save()
         else:
-            # Вместо удаления просто возвращаем невалидную форму
             return self.form_invalid(form)
+
+        return super().form_valid(form)
