@@ -172,14 +172,15 @@ class GameEditView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         context = self.get_context_data()
         image_formset = context['image_formset']
-
-        self.object = form.save()
-
+        
+        # Сохраняем форму игры, но не коммитим в БД пока не проверим images
+        self.object = form.save(commit=False)
+        
         if image_formset.is_valid():
+            self.object.save()  # Сохраняем игру
             image_formset.instance = self.object
-            image_formset.save()
+            image_formset.save()  # Сохраняем изображения
+            return super().form_valid(form)
         else:
-            self.object.delete()
+            # Вместо удаления просто возвращаем невалидную форму
             return self.form_invalid(form)
-
-        return super().form_valid(form)
