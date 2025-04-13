@@ -157,6 +157,8 @@ class StatusView(ListView):
 
 
 
+
+
 class EditGameView(LoginRequiredMixin, UpdateView):
     model = MGame
     template_name = 'addgame.html'
