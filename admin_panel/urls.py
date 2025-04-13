@@ -20,5 +20,5 @@ urlpatterns = [
     path('add_teglist/', views.add_teglist, name='add_teglist'),
     path('delete_tag/<int:pk>/', deleteteg.as_view(), name='delete_tag'),
     path('delete_com/<int:pk>/', deletecom.as_view(), name='delete_com'),
-    path('edit_game/<int:pk>/', GameEditView.as_view(), name='edit_game'),
+    path('edit-game/<int:pk>/', EditGameView.as_view(), name='edit_game'),
 ]
