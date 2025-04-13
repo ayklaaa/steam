@@ -14,7 +14,6 @@ from www.models import *
 from .forms import MStatusForm, MTeglistForm
 from .models import *
 from django.db.models import Count
-from www.models import MGame
 
 # Представление для главной панели админа
 @login_required
@@ -113,7 +112,27 @@ def add_category(request):
 
     return render(request, 'admin_panel/add_category.html')
 
+def add_status(request):
+    if request.method == 'POST':
+        form = MStatusForm(request.POST)
+        if form.is_valid():
+            form.save()  # Сохраняем новый статус в базе данных
+            return redirect('admin_dashboard')  # Перенаправляем на список статусов
+    else:
+        form = MStatusForm()  # Создаем пустую форму
 
+    return render(request, 'admin_panel/add_status.html', {'form': form})
+
+def add_teglist(request):
+    if request.method == 'POST':
+        form = MTeglistForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_dashboard')  # потом сюда страницу списка тегов
+    else:
+        form = MTeglistForm()
+
+    return render(request, 'admin_panel/add_teglist.html', {'form': form})
 
 class deleteteg(DeleteView):
     model = MGame
@@ -140,12 +159,7 @@ class GameEditView(LoginRequiredMixin, UpdateView):
     context_object_name = 'game'
     template_name = 'admin_panel/edit_game.html'
     form_class = GameForm
-    success_url = '/games/'
-
-    def get_object(self, queryset=None):
-        # Добавляем явную проверку существования объекта
-        obj = get_object_or_404(MGame, pk=self.kwargs.get('pk'))
-        return obj
+    success_url = '/admin/games/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
