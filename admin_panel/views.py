@@ -113,27 +113,7 @@ def add_category(request):
 
     return render(request, 'admin_panel/add_category.html')
 
-def add_status(request):
-    if request.method == 'POST':
-        form = MStatusForm(request.POST)
-        if form.is_valid():
-            form.save()  # Сохраняем новый статус в базе данных
-            return redirect('admin_dashboard')  # Перенаправляем на список статусов
-    else:
-        form = MStatusForm()  # Создаем пустую форму
 
-    return render(request, 'admin_panel/add_status.html', {'form': form})
-
-def add_teglist(request):
-    if request.method == 'POST':
-        form = MTeglistForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('admin_dashboard')  # потом сюда страницу списка тегов
-    else:
-        form = MTeglistForm()
-
-    return render(request, 'admin_panel/add_teglist.html', {'form': form})
 
 class deleteteg(DeleteView):
     model = MGame
