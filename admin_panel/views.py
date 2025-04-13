@@ -159,7 +159,7 @@ class GameEditView(LoginRequiredMixin, UpdateView):
     context_object_name = 'game'
     template_name = 'admin_panel/edit_game.html'
     form_class = GameForm
-    success_url = '/admin/games/'
+    success_url = '/games/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
