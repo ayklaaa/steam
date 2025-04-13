@@ -137,7 +137,7 @@ def add_teglist(request):
 class deleteteg(DeleteView):
     model = MGame
     template_name = 'admin_panel/delete.html'
-    success_url = 'admin_dashboard'
+    success_url = '/admin/games/'
 
 class deletecom(DeleteView):
     model = MComment
@@ -147,6 +147,12 @@ class CategoryView(ListView):
     model = MCategory
     template_name = 'admin_panel/category.html'
     context_object_name = 'category'
+
+class StatusView(ListView):
+    model = MStatus
+    template_name = 'admin_panel/status.html'
+    context_object_name = 'status'
+
 
 class GameEditView(LoginRequiredMixin, UpdateView):
     model = MGame

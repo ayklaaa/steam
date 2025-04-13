@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/ratings/', views.admin_ratings, name='admin_ratings'),  # Страница рейтингов
     path('admin/favorites/', views.admin_favorites, name='admin_favorites'),  # Страница избранных игр
     path('admin/stats/', views.admin_stats, name='admin_stats'),  # Страница статистики
+    path('admin/status/', StatusView.as_view(), name='admin_status'),  # Страница статистики
 
     path('add_tag/', views.add_tag, name='add_tag'),
     path('edit_tag/<int:id>/', views.edit_tag, name='edit_tag'),

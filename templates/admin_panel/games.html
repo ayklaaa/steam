@@ -4,7 +4,11 @@
 
 {% block content %}
 
-
+<style>
+.add-game-container{
+    margin-top: 20px;
+}
+</style>
    
 
     <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
@@ -40,6 +44,10 @@
             {% endfor %}
         </tbody>
     </table>
+<div class="add-game-container">
 
+                <a href="{% url 'add_game' %}" class="add-game-button">+ Add a game</a>
+
+            </div>
 {% endblock %}
     

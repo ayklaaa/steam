@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for status in status %}
+    {{ status }}<a href="{% url 'delete_tag' status.id %}" style="color: #00bfff;">add</a> |
+{% endfor %}
+
+</body>
+</html>
