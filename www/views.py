@@ -349,17 +349,21 @@ class AddGameView(LoginRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
+        # Привязываем создателя игры
         form.instance.creator = MUserProfile.objects.get(user=self.request.user)
         context = self.get_context_data()
         image_formset = context['image_formset']
 
+        # Сохраняем основную форму
         self.object = form.save()
 
+        # Если image_formset невалиден, выводим ошибки в лог (или консоль)
         if image_formset.is_valid():
             image_formset.instance = self.object
             image_formset.save()
         else:
-
+            # Печатаем ошибки для отладки
+            print("Image Formset Errors:", image_formset.errors)
             self.object.delete()
             return self.form_invalid(form)
 
