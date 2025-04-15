@@ -314,11 +314,13 @@ mobile-menu {
     .game-description {
         margin-top: -20px;
         margin-bottom: -10px;
+            width: 200px;
     }
 
     .game-description p {
         font-size: 16px;
         margin: 0px -30px;
+            width: 200px;
 
     }
 
@@ -535,6 +537,7 @@ mobile-menu {
 .game-description {
     font-size: 14px;
     color: #555;
+    width: 200px;
 }
 
 .info-button {
@@ -1368,7 +1371,9 @@ H2 {
         height: 175px;
     }
 
-
+    .modal{
+        visibility: hidden;
+    }
 }
 
 
