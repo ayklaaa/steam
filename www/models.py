@@ -69,8 +69,18 @@ class MGame(models.Model):
 
 
 class MImage(models.Model):
-    game = models.ForeignKey(MGame, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images/')
+    game = models.ForeignKey(
+        'MGame',
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = CloudinaryField(
+        'image',  # Тип ресурса (изображение)
+        folder='games/images',  # Папка в Cloudinary
+        transformation={'quality': 'auto:best'},
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return f'Image for game: {self.game.name}'
