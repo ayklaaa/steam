@@ -139,12 +139,12 @@ def add_teglist(request):
 class deleteteg(DeleteView):
     model = MGame
     template_name = 'admin_panel/delete.html'
-    success_url = '/admin-panel/admin/games/'
+    success_url = '/admin/games/'
 
 class deletecom(DeleteView):
     model = MComment
     template_name = 'admin_panel/delete.html'
-    success_url = '/admin-panel/admin/comments/'
+    success_url = '/admin/comments/'
 class CategoryView(ListView):
     model = MCategory
     template_name = 'admin_panel/category.html'
