@@ -1,5 +1,9 @@
-from dotenv import load_dotenv  # Добавьте этот импорт
-load_dotenv()  # Загружает переменные из .env
+import os
+
+# Для локальной разработки (если .env существует)
+if os.path.exists('.env'):
+    from dotenv import load_dotenv
+    load_dotenv()
 from decouple import config
 import dj_database_url
 import os
