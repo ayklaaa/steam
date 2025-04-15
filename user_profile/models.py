@@ -8,7 +8,12 @@ from www.models import *
 class MUserProfile(models.Model):
     name = models.CharField(max_length=120)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
+    profile_picture = CloudinaryField(
+        'image',
+        folder='profile_pictures',
+        blank=True,
+        null=True
+    )
     description = models.TextField(blank=True, null=True)
     game = models.ManyToManyField('www.MGame', blank=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
