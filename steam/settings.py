@@ -1,3 +1,5 @@
+from dotenv import load_dotenv  # Добавьте этот импорт
+load_dotenv()  # Загружает переменные из .env
 from decouple import config
 import dj_database_url
 import os
@@ -11,6 +13,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+
     'www.apps.WwwConfig',
     'user_profile',
     'admin_panel',
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     # Добавляем Cloudinary
     'cloudinary',
     'cloudinary_storage',
+'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -108,14 +112,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# 👇 Настройки Cloudinary (вместо локального MEDIA)
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'dorkhvusb'),  # fallback на случай ошибки
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'dorkhvusb'),  # fallback
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', '433537948279212'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'eRMlDGiZha2mZTcUiMTC8-39qjQ'),
 }
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # ❌ Эти строки больше не нужны, можешь удалить или закомментировать:
@@ -125,4 +129,3 @@ CLOUDINARY_STORAGE = {
 # Прочее
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'profile'
-
