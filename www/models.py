@@ -1,5 +1,6 @@
 from datetime import timezone
 
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -22,7 +23,7 @@ class MGame(models.Model):
     name = models.CharField(max_length=100)
     category = models.ManyToManyField('MCategory')
     description = models.TextField()
-    image = models.ImageField(upload_to='games/', blank=True)
+    image = CloudinaryField('image', folder='games', blank=True)
     video = models.FileField(upload_to='games/', blank=True)
     about = models.TextField()
     # rating = models.IntegerField()
