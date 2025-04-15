@@ -16,7 +16,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-!_*(l=jq96!^f^!y&%+!%=db8_1yzfiw-@1ipscqk+=$^%i7t$'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -107,14 +107,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 # 👇 Настройки Cloudinary (вместо локального MEDIA)
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': config('CLOUDINARY_API_KEY'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'dorkhvusb'),  # fallback на случай ошибки
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '433537948279212'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'eRMlDGiZha2mZTcUiMTC8-39qjQ'),
 }
+
 
 # ❌ Эти строки больше не нужны, можешь удалить или закомментировать:
 # MEDIA_URL = '/media/'
@@ -123,3 +125,4 @@ CLOUDINARY_STORAGE = {
 # Прочее
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'profile'
+
