@@ -13,9 +13,7 @@ from pathlib import Path
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
 from decouple import config
 
 
