@@ -9,7 +9,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-from decouple import config
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
